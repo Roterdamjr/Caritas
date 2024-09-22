@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Controllers\CandidatoController;
+use App\Http\Controllers\WelcomeController;
+
+Route::get('/boavinda', [ WelcomeController::class , 'boavinda' ]);
+
+Route::get('/teste', function() {
+    return 'Rota de teste funcionando!';
+});
 
 //exibir varios 
 Route::get('/candidatos/dashboard', [ CandidatoController::class , 'dashboard' ]);
