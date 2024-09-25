@@ -46,6 +46,7 @@ class CandidatoController extends Controller
 
     public function show($id){  
         $candidato =Candidato::findOrFail($id);
+        
         $dataNascimento = \Carbon\Carbon::parse($candidato->pessoa->data_nascimento)->format('d/m/Y');
 
     // Passar o candidato e a data formatada para a view
@@ -58,29 +59,32 @@ class CandidatoController extends Controller
     //editar
     public function edit($id){ 
         $candidato =Candidato::findOrFail($id);
-
-        return view('candidatos.edit', ['candidato'=>$candidato ]);
+        $dataNascimento = \Carbon\Carbon::parse($candidato->pessoa->data_nascimento)->format('d/m/Y');
+        return view('candidatos.edit', [
+                'candidato'=>$candidato,
+                'data_nascimento' => $dataNascimento
+                 ]);
     }
     
     public function update(Request $request){ 
         $candidato = Candidato::findOrFail($request->id);
 
-        $candidato->update($request->except(['nome', 'data_nascimento','nome_responsavel', 'parentesco_responsavel','email', 'fone'])); // Atualiza tudo exceto os campos da pessoa
+        $candidato->update(
+            $request->except(['nome', 'data_nascimento','nome_responsavel', 'parentesco_responsavel','email', 'fone'])
+        ); // Atualiza tudo exceto os campos da pessoa
+        $candidato->update(['atividades' => $request->atividades]);
 
+        
         $pessoa = $candidato->pessoa;
 
-        //$dataNascimento = Carbon::createFromFormat('d/m/Y', $request->data_nascimento)->format('Y-m-d');
-        
-        
-        try {
-            $dataNascimento = Carbon::createFromFormat('d/m/Y', $request->data_nascimento)->format('Y-m-d');
-        } catch (\Exception $e) {
-            return back()->withErrors(['data_nascimento' => 'Formato de data inválido.']);
+        $data_nascimento = $request->data_nascimento;
+        if (strpos($data_nascimento, '/') !== false) {
+            $data_nascimento = Carbon::createFromFormat('d/m/Y', $data_nascimento)->format('Y-m-d');
         }
-        
+
         $pessoa->update([
             'nome' => $request->nome,
-            'data_nascimento' => $dataNascimento,
+            'data_nascimento' => $data_nascimento,
             'nome_responsavel' => $request->nome_responsavel,
             'parentesco_responsavel' => $request->parentesco_responsavel,
         ]);
@@ -91,7 +95,7 @@ class CandidatoController extends Controller
             'email' => $request->email
         ]);
 
-        return redirect('/candidatos/dashboard')->with("msg",$dataNascimento);
+        return redirect('/candidatos/dashboard')->with("msg",$data_nascimento);
     }
 
     //deletar

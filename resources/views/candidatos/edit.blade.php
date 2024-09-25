@@ -36,7 +36,7 @@
                     <label for="data_nascimento" class="col-sm-2 col-form-label text-nowrap">Data de Nascimento</label>
                     <div class="col-sm-2">
                         <input type="text" id="data_nascimento" name="data_nascimento" class="form-control" placeholder="Data de Nascimento" 
-                            value="{{$candidato->pessoa->data_nascimento}}">
+                            value="{{$data_nascimento}}">
                     </div>
                 </div>
 
