@@ -13,14 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Controllers\CandidatoController;
+use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\WelcomeController;
 
-Route::get('/boavinda', [ WelcomeController::class , 'boavinda' ]);
-
-Route::get('/teste', function() {
-    return 'Rota de teste funcionando!';
-});
-
+// ********************************** CANDIDATOS ********************************
 //exibir varios 
 Route::get('/candidatos/dashboard', [ CandidatoController::class , 'dashboard' ]);
 
@@ -43,3 +39,20 @@ Route::put('/candidatos/update/{id}', [ CandidatoController::class , 'update' ])
 //deletar
 //Route::delete('/candidatos/{id}', [ CandidatoController::class , 'destroy' ])->middleware('auth');
 Route::delete('/candidatos/{id}', [ CandidatoController::class , 'destroy' ]);
+
+// ********************************** ALUNOS ********************************
+//exibir varios 
+Route::get('/alunos/dashboard', [ AlunoController::class , 'dashboard' ]);
+
+//incluir
+//Route::get('/candidatos/create', [ CandidatoController::class , 'create' ])->middleware('auth');
+Route::get('/alunos/create', [ AlunoController::class , 'create' ]);
+Route::post('/alunos', [ AlunoController::class , 'store' ]);
+
+
+
+// ********************************** TESTE ********************************
+Route::get('/boavinda', [ WelcomeController::class , 'boavinda' ]);
+Route::get('/teste', function() {
+    return 'Rota de teste funcionando!';
+});
