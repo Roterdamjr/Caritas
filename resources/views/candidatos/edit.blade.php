@@ -35,8 +35,19 @@
 
                     <label for="data_nascimento" class="col-sm-2 col-form-label text-nowrap">Data de Nascimento</label>
                     <div class="col-sm-2">
-                        <input type="text" id="data_nascimento" name="data_nascimento" class="form-control" placeholder="Data de Nascimento" 
-                            value="{{$data_nascimento}}">
+                        <input type="text" id="data_nascimento" name="data_nascimento" value="{{ $data_nascimento }}">
+
+                        @if($errors->has('data_nascimento'))
+                            <span class="text-danger">
+                                {{ $errors->first('data_nascimento') }}
+                            </span>
+                        @endif
+                        
+                        <script>
+                            $(document).ready(function(){
+                                $("#data_nascimento").inputmask("99/99/9999");  // Máscara no formato DD/MM/YYYY
+                            });
+                        </script>
                     </div>
                 </div>
 
