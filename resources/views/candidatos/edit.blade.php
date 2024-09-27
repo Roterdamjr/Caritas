@@ -21,9 +21,9 @@
                 </div>
 
                 <div class="form-group row "> 
-                    <label for="fone" class="col-sm-2 col-form-label ">Fone</label>
+                    <label for="fone" class="col-sm-2 col-form-label ">Telefone</label>
                     <div class="col-sm-2">
-                        <input type="text" id="fone" name="fone" class="form-control" placeholder="Fone do candidato" 
+                        <input type="text" id="fone" name="fone" class="form-control" placeholder="Telefone do candidato" 
                             value="{{$candidato->pessoa->contato->telefone}}">
                     </div>
 
@@ -58,14 +58,20 @@
 
                 <div class="form-group">
                     <label for="title">Atividade</label>
-                    @foreach (['Arte que Ajuda', 'Ação de Caritas', 'Ballet', 'Biblioteca Comunitária', 'Canto Coral', 
-                            'Flauta Doce', 'Gestação Acolhida', 'Reforço Escolar', 'Sapateado', 'Teatro', 'Violino', 'Violão'] 
-                            as $atividade)
-                        <div class="form-check">
-                            <input type="checkbox" name="atividades[]" value="{{ $atividade }}" class="form-check-input">
-                            <label class="form-check-label">{{ $atividade }}</label>
-                        </div>
-                    @endforeach
+
+                    <div class="form-group row"> 
+                        @foreach (['Arte que Ajuda', 'Ação de Caritas', 'Ballet', 'Biblioteca Com.', 'Canto Coral', 
+                                'Flauta Doce', 'Gestação Acolhida', 'Reforço Escolar', 'Sapateado', 'Teatro', 'Violino', 'Violão'] 
+                                as $atividade)
+                                <div class="col-md-2"> <!-- Exibir 3 itens por linha em telas médias ou maiores -->
+                                    <div class="form-check">
+                                        <input type="checkbox" name="atividades[]" value="{{ $atividade }}" class="form-check-input">
+                                        <label class="form-check-label">{{ $atividade }}</label>
+                                    </div>
+                                </div>
+                        @endforeach
+                    </div>
+
                 </div> 
 
                 <input type="submit" class="btn btn-primary" value="Editar candidato">

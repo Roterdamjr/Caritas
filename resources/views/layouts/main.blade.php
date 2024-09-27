@@ -14,16 +14,18 @@
         <!-- CSS -->
         <link rel="stylesheet" href="/css/styles.css">
     </head>
- 
+
     <body class="antialiased">
 
         <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-1">
                 <a class="navbar-brand" href="#"></a>
                 <div>
                     <div class="navbar-nav">
-                    <a class="nav-link active" id="home-link" href="/candidatos/dashboard">Candidatos</a>
-                    <a class="nav-link active" href="/candidatos/create">Adicionar Candidato</a>
+                    <a class="nav-link active " id="home-link" href="/candidatos/dashboard">Candidatos</a>
+                    <a class="nav-link active " href="/candidatos/create">Adicionar Candidato</a>
+                    <a class="nav-link active " href="/alunos/dashboard">Alunos</a>
+                    <a class="nav-link active " href="/alunos/create">Adicionar Aluno</a>
                     </div>
                 </div>
             </nav>
@@ -40,7 +42,7 @@
             </div>
         </div>
 
-        <footer class="bg-primary text-white text-center py-3">
+        <footer class="bg-primary text-white text-center py-1">
         <p>Casa de Caritas</p>
     </footer>
 

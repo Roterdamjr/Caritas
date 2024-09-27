@@ -16,6 +16,11 @@ body {
   width: 50px;
 }
 
+.navbar-nav {
+  gap: 30px; /* Define o espaçamento entre os itens */
+}
+
+
 #main-title {
   text-align: center;
   margin: 15px 0 30px;
