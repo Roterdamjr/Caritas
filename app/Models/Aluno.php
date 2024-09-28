@@ -11,6 +11,8 @@ class Aluno extends Model
 
     protected $guarded = [];
 
+    protected $casts = ['atividades'=>'array','uniformes'=>'array'];
+
     public function pessoa()
     {
         return $this->belongsTo(Pessoa::class);

@@ -49,7 +49,19 @@ Route::get('/alunos/dashboard', [ AlunoController::class , 'dashboard' ]);
 Route::get('/alunos/create', [ AlunoController::class , 'create' ]);
 Route::post('/alunos', [ AlunoController::class , 'store' ]);
 
+//exibir um 
+Route::get('/alunos/{id}', [ AlunoController::class , 'show' ]);
 
+//alterar
+//Route::get('/candidatos/edit/{id}', [ AlunoController::class , 'edit' ])->middleware('auth');
+//Route::put('/candidatos/update/{id}', [ AlunoController::class , 'update' ])->middleware('auth');
+Route::get('/alunos/edit/{id}', [ AlunoController::class , 'edit' ]);
+Route::put('/alunos/update/{id}', [ AlunoController::class , 'update' ]);
+
+
+//deletar
+//Route::delete('/candidatos/{id}', [ AlunoController::class , 'destroy' ])->middleware('auth');
+Route::delete('/alunos/{id}', [ AlunoController::class , 'destroy' ]);
 
 // ********************************** TESTE ********************************
 Route::get('/boavinda', [ WelcomeController::class , 'boavinda' ]);

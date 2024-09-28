@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('estado_civil')->nullable();
             $table->string('nome_responsavel')->nullable();
             $table->string('parentesco_responsavel')->nullable();
+            $table->string('fone_responsavel')->nullable();
             $table->timestamps();
         });
     }

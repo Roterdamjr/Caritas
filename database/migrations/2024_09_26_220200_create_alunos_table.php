@@ -16,17 +16,18 @@ return new class extends Migration
         Schema::create('alunos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pessoa_id')->constrained();
-            $table->string('profissao');
-            $table->string('escolaridade');
-            $table->string('ano_escolar');
-            $table->string('instituicao');
-            $table->string('turno');
-            $table->string('beneficio');
-            $table->string('comunidade');
-            $table->string('clinica');
-            $table->string('acompanhamento');
-            $table->string('necessidade_especial');
-            $table->string('uniforme');
+            $table->json("atividades")->nullable();
+            $table->string('profissao')->nullable();
+            $table->string('escolaridade')->nullable();
+            $table->string('ano_escolar')->nullable();
+            $table->string('instituicao')->nullable();
+            $table->string('turno')->nullable();
+            $table->string('beneficio')->nullable();
+            $table->string('comunidade')->nullable();
+            $table->string('clinica')->nullable();
+            $table->string('acompanhamento')->nullable();
+            $table->string('necessidade_especial')->nullable();
+            $table->json('uniformes')->nullable();
             $table->timestamps();
         });
     }
