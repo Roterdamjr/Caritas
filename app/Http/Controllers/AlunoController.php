@@ -26,7 +26,7 @@ class AlunoController extends Controller
         $pessoa->nome_pai               = $request->nome_pai;
         $pessoa->nome_responsavel       = $request->nome_responsavel;
         $pessoa->parentesco_responsavel = $request->parentesco_responsavel;
-        $pessoa->fone_responsavel       = $request->fone_responsavel;
+        $pessoa->telefone_responsavel       = $request->telefone_responsavel;
 
         $request->validate([ 'data_nascimento' => 'nullable|date_format:d/m/Y',  ]);
         if ($request->filled('data_nascimento')) {
@@ -43,7 +43,7 @@ class AlunoController extends Controller
 
         $contato = new Contato();
         $contato->pessoa_id =   $pessoa->id;
-        $contato->telefone  =   $request->fone;
+        $contato->telefone  =   $request->telefone;
         $contato->endereco  =   $request->endereco;
         $contato->save();
 
@@ -92,5 +92,63 @@ class AlunoController extends Controller
                  ]);
     }
 
+    public function update(Request $request){ 
+        $aluno = Aluno::findOrFail($request->id);
+
+        $request->validate([  'data_nascimento' => 'nullable|date_format:d/m/Y',   ]);
+
+        if ($request->filled('data_nascimento')) {
+            $data_nascimento = Carbon::createFromFormat('d/m/Y', $request->data_nascimento)->format('Y-m-d');
+        } else {
+            $data_nascimento = null; 
+        }
+
+        /**************************  atualiza pessoa *************************/
+        $pessoa = $aluno->pessoa;
+    
+        $pessoa->nome                   = $request->nome;
+        $pessoa->nome_mae               = $request->nome_mae;
+        $pessoa->nome_pai               = $request->nome_pai;
+        $pessoa->nome_responsavel       = $request->nome_responsavel;
+        $pessoa->parentesco_responsavel = $request->parentesco_responsavel;
+        $pessoa->telefone_responsavel   = $request->telefone_responsavel;
+        $pessoa->estado_civil           = $request->estado_civil;
+        $pessoa->sexo                   = $request->sexo;
+        $pessoa->cor                    = $request->cor;
+
+        $pessoa->update([
+            'nome' =>                   $request->nome,
+            'data_nascimento' =>        $data_nascimento,
+            'nome_mae' =>               $request->nome_mae,
+            'nome_pai' =>               $request->nome_pai,
+            'nome_responsavel' =>       $request->nome_responsavel,
+            'parentesco_responsavel' => $request->parentesco_responsavel,
+            'telefone_responsavel' =>   $request->telefone_responsavel,
+            'estado_civil' =>           $request->estado_civil,
+            'sexo' =>                   $request->sexo,
+            'cor' =>                    $request->cor
+        ]);
+
+        /*****************************  atualiza contato *************************/
+        //dd($request->endereco);
+
+        $contato = $pessoa->contato;
+
+        $contato->update([
+            'telefone' => $request->telefone,
+            'endereco' => $request->endereco
+        ]);
+
+        /*****************************  atualiza aluno *************************/
+
+        $aluno->update(
+            $request->except(['nome', 'data_nascimento','nome_mae','nome_pai','nome_responsavel', 
+                            'parentesco_responsavel','telefone_responsavel', 'estado_civil','sexo','cor', 
+                            'telefone','endereco'])
+        ); // Atualiza tudo exceto os campos da pessoa
+        $aluno->update(['atividades' => $request->atividades]);
+
+        return redirect('/alunos/dashboard')->with("msg", "Candidato alterado com sucesso"  );
+    }
 
 }

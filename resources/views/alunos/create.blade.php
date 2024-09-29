@@ -41,9 +41,9 @@
                         <input type="text" id="endereco" name="endereco" class="form-control" placeholder="Endereço do aluno">
                     </div>
 
-                    <label for="fone" class="col-sm-2 col-form-label ">Telefone</label>
+                    <label for="telefone" class="col-sm-2 col-form-label ">Telefone</label>
                     <div class="col-sm-2">
-                        <input type="text" id="fone" name="fone" class="form-control" placeholder="Telefone do aluno">
+                        <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone do aluno">
                     </div>
                 </div>
 
@@ -70,9 +70,9 @@
                         <input type="text" id="parentesco_responsavel" name="parentesco_responsavel" class="form-control" placeholder="Parentesco do responsável" >
                     </div>
 
-                    <label for="fone_responsavel" class="col-sm-1 col-form-label ">Telefone</label>
+                    <label for="telefone_responsavel" class="col-sm-1 col-form-label ">Telefone</label>
                     <div class="col-sm-2">
-                        <input type="text" id="fone_responsavel" name="fone_responsavel" class="form-control" placeholder="Fone do responsável" >
+                        <input type="text" id="telefone_responsavel" name="telefone_responsavel" class="form-control" placeholder="Fone do responsável" >
                     </div>
                 </div>
 

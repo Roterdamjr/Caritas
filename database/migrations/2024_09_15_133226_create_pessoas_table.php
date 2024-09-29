@@ -23,11 +23,10 @@ return new class extends Migration
             $table->string('nome_pai')->nullable();
             $table->string('sexo')->nullable();
             $table->string('cor')->nullable();
-            $table->string('profissao')->nullable();
             $table->string('estado_civil')->nullable();
             $table->string('nome_responsavel')->nullable();
             $table->string('parentesco_responsavel')->nullable();
-            $table->string('fone_responsavel')->nullable();
+            $table->string('telefone_responsavel')->nullable();
             $table->timestamps();
         });
     }

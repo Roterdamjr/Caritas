@@ -6,8 +6,9 @@
 
     <body class="antialiased">
         
-        <form action="/alunos" method="POST" enctype="multipart/form-data">
+        <form action="/alunos/update/{{$aluno->id}}" method="POST" enctype="multipart/form-data">
         @csrf 
+        @method('PUT')
 
             <div class="container ml-5"> 
 
@@ -40,13 +41,13 @@
                     <label for="endereco" class="col-sm-2 col-form-label ">Endereço</label>
                     <div class="col-sm-6">
                         <input type="text" id="endereco" name="endereco" class="form-control" placeholder="Endereço do aluno" 
-                            value="{{$aluno->pessoa->endereco}}">
+                            value="{{$aluno->pessoa->contato->endereco}}">
                     </div>
 
-                    <label for="fone" class="col-sm-2 col-form-label ">Telefone</label>
+                    <label for="telefone" class="col-sm-2 col-form-label ">Telefone</label>
                     <div class="col-sm-2">
-                        <input type="text" id="fone" name="fone" class="form-control" placeholder="Telefone do aluno" 
-                            value="{{$aluno->pessoa->contato->fone}}">
+                        <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone do aluno" 
+                            value="{{$aluno->pessoa->contato->telefone}}">
                     </div>
                 </div>
 
@@ -77,17 +78,18 @@
                         value="{{$aluno->pessoa->parentesco_responsavel}}">
                     </div>
 
-                    <label for="fone_responsavel" class="col-sm-1 col-form-label ">Telefone</label>
+                    <label for="telefone_responsavel" class="col-sm-1 col-form-label ">Telefone</label>
                     <div class="col-sm-2">
-                        <input type="text" id="fone_responsavel" name="fone_responsavel" class="form-control" placeholder="Fone do responsável" 
-                        value="{{$aluno->pessoa->fone_responsavel}}">
+                        <input type="text" id="telefone_responsavel" name="telefone_responsavel" class="form-control" placeholder="Fone do responsável" 
+                        value="{{$aluno->pessoa->telefone_responsavel}}">
                     </div>
                 </div>
 
                 <div class="form-group row "> 
                     <label for="data_nascimento" class="col-sm-2 col-form-label ">Data Nascimento</label>
                     <div class="col-sm-2">
-                        <input type="text" id="data_nascimento" name="data_nascimento">
+                        <input type="text" id="data_nascimento" name="data_nascimento"
+                        value="{{$data_nascimento}}">
                         
                         @if($errors->has('data_nascimento'))
                             <span class="text-danger">
@@ -184,10 +186,10 @@
                 </div>
 
                 <div class="form-group row "> 
-                    <label for="necessidade" class="col-sm-2 col-form-label ">Necessidade Especial</label>
+                    <label for="necessidade_especial" class="col-sm-2 col-form-label ">Necessidade Especial</label>
                     <div class="col-sm-3">
-                        <input type="text" id="necessidade" name="necessidade" class="form-control" placeholder="Necessidade Especial" 
-                        value="{{$aluno->necessidade}}">
+                        <input type="text" id="necessidade_especial" name="necessidade_especial" class="form-control" placeholder="Necessidade Especial" 
+                        value="{{$aluno->necessidade_especial}}">
                     </div> 
                 </div>
 
@@ -213,7 +215,7 @@
                     </div> 
                 </div>
 
-                <input type="submit" class="btn btn-primary" value="Cadastrar Aluno">
+                <input type="submit" class="btn btn-primary" value="Editar Aluno">
             </div> <!-- Fim do container com a margem --> 
         </form> 
 

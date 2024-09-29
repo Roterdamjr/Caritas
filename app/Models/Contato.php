@@ -11,7 +11,8 @@ class Contato extends Model
 
     protected $fillable = [
         'telefone', 
-        'email'
+        'email',
+        'endereco'
     ];
 
     public function pessoa()
