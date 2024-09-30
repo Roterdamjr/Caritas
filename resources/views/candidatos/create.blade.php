@@ -69,7 +69,7 @@
                         @foreach (['Arte que Ajuda', 'Ação de Caritas', 'Ballet', 'Biblioteca Com.', 'Canto Coral', 
                                 'Flauta Doce', 'Gestação Acolhida', 'Reforço Escolar', 'Sapateado', 'Teatro', 'Violino', 'Violão'] 
                                 as $atividade)
-                                <div class="col-md-2"> <!-- Exibir 3 itens por linha em telas médias ou maiores -->
+                                <div class="col-md-2"> 
                                     <div class="form-check">
                                         <input type="checkbox" name="atividades[]" value="{{ $atividade }}" class="form-check-input">
                                         <label class="form-check-label">{{ $atividade }}</label>
@@ -77,7 +77,7 @@
                                 </div>
                         @endforeach
                     </div>
-
+     
                 </div> 
 
                 <input type="submit" class="btn btn-primary" value="Cadastrar candidato">

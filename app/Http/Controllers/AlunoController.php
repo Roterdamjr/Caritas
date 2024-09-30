@@ -26,7 +26,7 @@ class AlunoController extends Controller
         $pessoa->nome_pai               = $request->nome_pai;
         $pessoa->nome_responsavel       = $request->nome_responsavel;
         $pessoa->parentesco_responsavel = $request->parentesco_responsavel;
-        $pessoa->telefone_responsavel       = $request->telefone_responsavel;
+        $pessoa->telefone_responsavel   = $request->telefone_responsavel;
 
         $request->validate([ 'data_nascimento' => 'nullable|date_format:d/m/Y',  ]);
         if ($request->filled('data_nascimento')) {
@@ -68,13 +68,13 @@ class AlunoController extends Controller
     public function show($id){  
         $aluno =Aluno::findOrFail($id);
         
-        $dataNascimento = $aluno->pessoa->data_nascimento  ? 
+        $data_nascimento = $aluno->pessoa->data_nascimento  ? 
             \Carbon\Carbon::parse($aluno->pessoa->data_nascimento)->format('d/m/Y')
             : null;  
 
-        return view('candidatos.show', [
-            'candidato' => $aluno,
-            'dataNascimento' => $dataNascimento
+        return view('alunos.show', [
+            'aluno' => $aluno,
+            'data_nascimento' => $data_nascimento
         ]);
     }
 

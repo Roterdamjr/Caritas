@@ -71,15 +71,17 @@
                     <label for="title">Atividade</label>
 
                     <div class="form-group row"> 
-                        @foreach (['Arte que Ajuda', 'Ação de Caritas', 'Ballet', 'Biblioteca Com.', 'Canto Coral', 
-                                'Flauta Doce', 'Gestação Acolhida', 'Reforço Escolar', 'Sapateado', 'Teatro', 'Violino', 'Violão'] 
+                        @foreach ([ 'Arte que Ajuda', 'Ação de Caritas', 'Ballet', 'Biblioteca Com.', 'Canto Coral','Flauta Doce', 
+                                    'Gestação Acolhida', 'Reforço Escolar', 'Sapateado', 'Teatro', 'Violino', 'Violão']
                                 as $atividade)
-                                <div class="col-md-2"> <!-- Exibir 3 itens por linha em telas médias ou maiores -->
-                                    <div class="form-check">
-                                        <input type="checkbox" name="atividades[]" value="{{ $atividade }}" class="form-check-input">
-                                        <label class="form-check-label">{{ $atividade }}</label>
-                                    </div>
+                            <div class="col-md-2">
+                                <div class="form-check">
+                                    <input type="checkbox" name="atividades[]" value="{{ $atividade }}" 
+                                        class="form-check-input" 
+                                        @if(in_array($atividade, $candidato->atividades)) checked @endif>
+                                    <label class="form-check-label">{{ $atividade }}</label>
                                 </div>
+                            </div>
                         @endforeach
                     </div>
 

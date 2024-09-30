@@ -21,21 +21,20 @@
                 </div>
 
                 <div class="form-group">
-
-                    <div class="form-group row"> 
-                        @foreach (['Arte que Ajuda', 'Ação de Caritas', 'Ballet', 'Biblioteca Com.', 'Canto Coral', 
-                                'Flauta Doce', 'Gestação Acolhida', 'Reforço Escolar', 'Sapateado', 'Teatro', 'Violino', 'Violão'] 
-                                as $atividade)
-                                <div class="col-md-2">
-                                    <div class="form-check">
-                                        <input type="checkbox" name="atividades[]" value="{{ $atividade }}" class="form-check-input">
-                                        <label class="form-check-label">{{ $atividade }}</label>
-                                    </div>
-                                </div>
-                        @endforeach
-                    </div>
-
-                </div> 
+                    <div class="form-group row">
+                    @foreach ([ 'Arte que Ajuda', 'Ação de Caritas', 'Ballet', 'Biblioteca Com.', 'Canto Coral','Flauta Doce', 
+                                'Gestação Acolhida', 'Reforço Escolar', 'Sapateado', 'Teatro', 'Violino', 'Violão']
+                               as $atividade)
+                        <div class="col-md-2">
+                            <div class="form-check">
+                                <input type="checkbox" name="atividades[]" value="{{ $atividade }}" 
+                                    class="form-check-input" 
+                                    @if(in_array($atividade, $aluno->atividades)) checked @endif>
+                                <label class="form-check-label">{{ $atividade }}</label>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
 
                 <div class="form-group row "> 
                     <label for="endereco" class="col-sm-2 col-form-label ">Endereço</label>
@@ -112,11 +111,14 @@
 
                     <label for="sexo" class="col-sm-1 col-form-label ">Sexo</label>
                     <select id="sexos" name="sexo">
-                        @foreach ([  'M',  'F'] 
-                                as $sexo)
-                            <option value="{{ $sexo }}">{{ $sexo }}</option>
+                        @foreach (['M', 'F'] as $sexo)
+                            <option value="{{ $sexo }}" 
+                                @if ($sexo == old('sexo', $aluno->pessoa->sexo)) selected @endif>
+                                {{ $sexo }}
+                            </option>
                         @endforeach
                     </select>
+
 
                     <label for="cor" class="col-sm-1 col-form-label ">Cor</label>
                     <div class="col-sm-1">
@@ -137,8 +139,11 @@
                         @foreach ([  'Fund. I completo',  'Fund. I incompleto',  'Fund. II completo',
                                     'Fund. II incompleto','Médio completo',
                                     'Médio incompleto','Superior completo','Superior incompleto'] 
-                                as $escolaridade)
-                            <option value="{{ $escolaridade }}">{{ $escolaridade }}</option>
+                                    as $escolaridade)
+                            <option value="{{ $escolaridade }}"
+                                @if ($escolaridade == old('escolaridade', $aluno->escolaridade)) selected @endif>
+                                {{ $escolaridade }}
+                            </option>
                         @endforeach
                     </select>
 
@@ -178,9 +183,13 @@
 
                     <label for="comunidade" class="col-sm-2 col-form-label ">Comunidade</label>
                     <select id="comunidades" name="comunidade">
+
                         @foreach ([  'Céu Azul','Rato Molhado','Dois de Maio','São João','Matriz'] 
                                 as $comunidade)
-                            <option value="{{ $comunidade }}">{{ $comunidade }}</option>
+                            <option value="{{ $comunidade }}"
+                                @if ($comunidade == old('comunidade', $aluno->comunidade)) selected @endif>
+                                {{ $comunidade }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
