@@ -18,7 +18,8 @@ use App\Http\Controllers\WelcomeController;
 
 // ********************************** CANDIDATOS ********************************
 //exibir varios 
-Route::get('/candidatos/dashboard', [ CandidatoController::class , 'dashboard' ]);
+Route::get('/candidatos/dashboard', [ CandidatoController::class , 'dashboard' ])->middleware('auth');
+//Route::get('/candidatos/dashboard', [ CandidatoController::class , 'dashboard' ]);
 
 //incluir
 //Route::get('/candidatos/create', [ CandidatoController::class , 'create' ])->middleware('auth');
@@ -63,8 +64,18 @@ Route::put('/alunos/update/{id}', [ AlunoController::class , 'update' ]);
 //Route::delete('/candidatos/{id}', [ AlunoController::class , 'destroy' ])->middleware('auth');
 Route::delete('/alunos/{id}', [ AlunoController::class , 'destroy' ]);
 
-// ********************************** TESTE ********************************
-Route::get('/boavinda', [ WelcomeController::class , 'boavinda' ]);
-Route::get('/teste', function() {
-    return 'Rota de teste funcionando!';
+// ********************************** welcome ********************************
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });

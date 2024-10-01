@@ -38,7 +38,7 @@ body {
 }
 
 .col-id {
-  font-weight: bold;
+  display: none;
 }
 
 .actions {
