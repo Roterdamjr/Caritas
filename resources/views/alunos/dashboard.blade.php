@@ -4,6 +4,10 @@
 
 @section('content')
 
+@if(session('msg'))
+    <div class="alert alert-success mt-3">  {{ session('msg') }}  </div>
+@endif
+
 <table class="table" id="contacts-table">
         <thead>
           <tr>

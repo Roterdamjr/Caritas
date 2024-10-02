@@ -28,22 +28,23 @@
                 <div class="navbar-collapse collapse">
                     <div class="navbar-nav">
                         @auth
-                        <a class="nav-link active " id="home-link" href="/candidatos/dashboard">Candidatos</a>
-                        <a class="nav-link active " href="/candidatos/create">Adicionar Candidato</a>
-                        <a class="nav-link active " href="/alunos/dashboard">Alunos</a>
-                        <a class="nav-link active " href="/alunos/create">Adicionar Aluno</a>
+                            <a class="nav-link active " id="home-link" href="/candidatos/dashboard">Candidatos</a>
+                            <a class="nav-link active " href="/candidatos/create">Adicionar Candidato</a>
+                            <a class="nav-link active " href="/alunos/dashboard">Alunos</a>
+                            <a class="nav-link active " href="/alunos/create">Adicionar Aluno</a>
                         @endauth
                     </div>
 
                     <!-- Logout alinhado à direita -->
                     <div class="navbar-nav ml-auto">
                         @auth
-                        <form action="/logout" method="POST">
-                            @csrf
-                            <a href="/logout" class="nav-link" onclick="event.preventDefault(); this.closest('form').submit();">
-                                Logout
-                            </a>
-                        </form>
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <a href="/logout" class="nav-link" onclick="event.preventDefault(); 
+                                this.closest('form').submit();">
+                                    Logout
+                                </a>
+                            </form>
                         @endauth
                         
                         @guest

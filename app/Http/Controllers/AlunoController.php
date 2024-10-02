@@ -19,6 +19,7 @@ class AlunoController extends Controller
         return view('alunos.create');
     }
 
+     //*********************** incluir **************
     public function store(Request $request){
         $pessoa = new Pessoa;
         $pessoa->nome                   = $request->nome;
@@ -65,6 +66,7 @@ class AlunoController extends Controller
         return redirect('/alunos/dashboard')->with("msg","Aluno criado com sucesso");
     }
 
+     //***************** exibir *********************
     public function show($id){  
         $aluno =Aluno::findOrFail($id);
         
@@ -78,7 +80,7 @@ class AlunoController extends Controller
         ]);
     }
 
-    //editar
+     //*************** editar **************
     public function edit($id){ 
         $aluno =Aluno::findOrFail($id);
 
@@ -92,6 +94,7 @@ class AlunoController extends Controller
                  ]);
     }
 
+    //**************** alterar *****************
     public function update(Request $request){ 
         $aluno = Aluno::findOrFail($request->id);
 
@@ -103,7 +106,7 @@ class AlunoController extends Controller
             $data_nascimento = null; 
         }
 
-        /**************************  atualiza pessoa *************************/
+                /*----  atualiza pessoa ----*/
         $pessoa = $aluno->pessoa;
     
         $pessoa->nome                   = $request->nome;
@@ -129,7 +132,7 @@ class AlunoController extends Controller
             'cor' =>                    $request->cor
         ]);
 
-        /*****************************  atualiza contato *************************/
+                /*----  atualiza contato ----*/
         //dd($request->endereco);
 
         $contato = $pessoa->contato;
@@ -139,7 +142,7 @@ class AlunoController extends Controller
             'endereco' => $request->endereco
         ]);
 
-        /*****************************  atualiza aluno *************************/
+                /*----  atualiza aluno ----*/
 
         $aluno->update(
             $request->except(['nome', 'data_nascimento','nome_mae','nome_pai','nome_responsavel', 
@@ -148,7 +151,19 @@ class AlunoController extends Controller
         ); // Atualiza tudo exceto os campos da pessoa
         $aluno->update(['atividades' => $request->atividades]);
 
-        return redirect('/alunos/dashboard')->with("msg", "Candidato alterado com sucesso"  );
+        return redirect('/alunos/dashboard')->with("msg", "Aluno alterado com sucesso"  );
     }
 
+       //****************** excluir **************
+        public function destroy($id){     
+            $aluno = Aluno::findOrFail($id);
+            $pessoa = $aluno->pessoa;
+            $contato = $pessoa->contato;
+    
+            $contato->delete();
+            $aluno->delete();
+            $pessoa->delete();
+            
+            return redirect('/alunos/dashboard')->with("msg","Aluno excluído com sucesso");
+        }
 }

@@ -19,50 +19,42 @@ use App\Http\Controllers\WelcomeController;
 // ********************************** CANDIDATOS ********************************
 //exibir varios 
 Route::get('/candidatos/dashboard', [ CandidatoController::class , 'dashboard' ])->middleware('auth');
-//Route::get('/candidatos/dashboard', [ CandidatoController::class , 'dashboard' ]);
 
 //incluir
-//Route::get('/candidatos/create', [ CandidatoController::class , 'create' ])->middleware('auth');
-Route::get('/candidatos/create', [ CandidatoController::class , 'create' ]);
-Route::post('/candidatos', [ CandidatoController::class , 'store' ]);
+Route::get('/candidatos/create', [ CandidatoController::class , 'create' ])->middleware('auth');
+Route::post('/candidatos', [ CandidatoController::class , 'store' ])->middleware('auth');
 
 
 //exibir um 
-Route::get('/candidatos/{id}', [ CandidatoController::class , 'show' ]);
+Route::get('/candidatos/{id}', [ CandidatoController::class , 'show' ])->middleware('auth');
 
 //alterar
-//Route::get('/candidatos/edit/{id}', [ CandidatoController::class , 'edit' ])->middleware('auth');
-//Route::put('/candidatos/update/{id}', [ CandidatoController::class , 'update' ])->middleware('auth');
-Route::get('/candidatos/edit/{id}', [ CandidatoController::class , 'edit' ]);
-Route::put('/candidatos/update/{id}', [ CandidatoController::class , 'update' ]);
+Route::get('/candidatos/edit/{id}', [ CandidatoController::class , 'edit' ])->middleware('auth');
+Route::put('/candidatos/update/{id}', [ CandidatoController::class , 'update' ])->middleware('auth');
 
 
 //deletar
-//Route::delete('/candidatos/{id}', [ CandidatoController::class , 'destroy' ])->middleware('auth');
-Route::delete('/candidatos/{id}', [ CandidatoController::class , 'destroy' ]);
+Route::delete('/candidatos/{id}', [ CandidatoController::class , 'destroy' ])->middleware('auth');
 
 // ********************************** ALUNOS ********************************
 //exibir varios 
-Route::get('/alunos/dashboard', [ AlunoController::class , 'dashboard' ]);
+Route::get('/alunos/dashboard', [ AlunoController::class , 'dashboard' ])->middleware('auth');
 
 //incluir
-//Route::get('/candidatos/create', [ CandidatoController::class , 'create' ])->middleware('auth');
-Route::get('/alunos/create', [ AlunoController::class , 'create' ]);
-Route::post('/alunos', [ AlunoController::class , 'store' ]);
+
+Route::get('/alunos/create', [ AlunoController::class , 'create' ])->middleware('auth');
+Route::post('/alunos', [ AlunoController::class , 'store' ])->middleware('auth');
 
 //exibir um 
 Route::get('/alunos/{id}', [ AlunoController::class , 'show' ]);
 
 //alterar
-//Route::get('/candidatos/edit/{id}', [ AlunoController::class , 'edit' ])->middleware('auth');
-//Route::put('/candidatos/update/{id}', [ AlunoController::class , 'update' ])->middleware('auth');
-Route::get('/alunos/edit/{id}', [ AlunoController::class , 'edit' ]);
-Route::put('/alunos/update/{id}', [ AlunoController::class , 'update' ]);
+Route::get('/alunos/edit/{id}', [ AlunoController::class , 'edit' ])->middleware('auth');
+Route::put('/alunos/update/{id}', [ AlunoController::class , 'update' ])->middleware('auth');
 
 
 //deletar
-//Route::delete('/candidatos/{id}', [ AlunoController::class , 'destroy' ])->middleware('auth');
-Route::delete('/alunos/{id}', [ AlunoController::class , 'destroy' ]);
+Route::delete('/alunos/{id}', [ AlunoController::class , 'destroy' ])->middleware('auth');
 
 // ********************************** welcome ********************************
 
