@@ -57,10 +57,13 @@ Route::put('/alunos/update/{id}', [ AlunoController::class , 'update' ])->middle
 Route::delete('/alunos/{id}', [ AlunoController::class , 'destroy' ])->middleware('auth');
 
 // ********************************** welcome ********************************
+Route::get('/', [ WelcomeController::class , 'show' ]);
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
 
 Route::middleware([
     'auth:sanctum',
