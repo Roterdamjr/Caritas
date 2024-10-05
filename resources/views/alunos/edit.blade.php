@@ -38,19 +38,46 @@
                 </div>
 
                 <div class="form-group row "> 
-                    <label for="endereco" class="col-sm-2 col-form-label ">Endereço</label>
-                    <div class="col-sm-6">
-                        <input type="text" id="endereco" name="endereco" class="form-control" placeholder="Endereço do aluno" 
-                            value="{{$aluno->pessoa->contato->endereco}}">
-                    </div>
-
                     <label for="telefone" class="col-sm-2 col-form-label ">Telefone</label>
                     <div class="col-sm-2">
                         <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone do aluno" 
                             value="{{$aluno->pessoa->contato->telefone}}">
                     </div>
-                </div>
 
+                    <label for="email" class="col-sm-1 col-form-label ">Email</label>
+                    <div class="col-sm-3">
+                        <input type="text" id="email" name="email" class="form-control" 
+                        value="{{$aluno->pessoa->contato->email}}">
+                    </div>
+
+                    <label for="data_nascimento" class="col-sm-2 col-form-label ">Data Nascimento</label>
+                    <div class="col-sm-2">
+                        <input type="text" id="data_nascimento" name="data_nascimento"
+                        value="{{$data_nascimento}}">
+                        
+                        @if($errors->has('data_nascimento'))
+                            <span class="text-danger">
+                                {{ $errors->first('data_nascimento') }}
+                            </span>
+                        @endif
+                        
+                        <script>
+                            $(document).ready(function(){
+                                $("#data_nascimento").inputmask("99/99/9999");  
+                            });
+                        </script>
+                    </div> 
+
+                </div>
+                
+                <div class="form-group row ">
+                    <label for="endereco" class="col-sm-2 col-form-label ">Endereço</label>
+                    <div class="col-sm-6">
+                        <input type="text" id="endereco" name="endereco" class="form-control" placeholder="Endereço do aluno" 
+                            value="{{$aluno->pessoa->contato->endereco}}">
+                    </div>                 
+                </div>
+                
                 <div class="form-group row "> 
                     <label for="nome_mae" class="col-sm-2 col-form-label ">Nome da mãe</label>
                     <div class="col-sm-4">
@@ -86,23 +113,6 @@
                 </div>
 
                 <div class="form-group row "> 
-                    <label for="data_nascimento" class="col-sm-2 col-form-label ">Data Nascimento</label>
-                    <div class="col-sm-2">
-                        <input type="text" id="data_nascimento" name="data_nascimento"
-                        value="{{$data_nascimento}}">
-                        
-                        @if($errors->has('data_nascimento'))
-                            <span class="text-danger">
-                                {{ $errors->first('data_nascimento') }}
-                            </span>
-                        @endif
-                        
-                        <script>
-                            $(document).ready(function(){
-                                $("#data_nascimento").inputmask("99/99/9999");  
-                            });
-                        </script>
-                    </div> 
 
                     <label for="estado_civil" class="col-sm-2 col-form-label ">Estado Civil</label>
                     <div class="col-sm-2">
@@ -206,22 +216,26 @@
                 <div class="form-group row "> 
                     <label for="uniforme_body" class="col-sm-2 col-form-label ">Uniforme body</label>
                     <div class="col-sm-1">
-                        <input type="text" id="uniforme_body" name="uniformes[body]" class="form-control" placeholder="Uniforme body" >
+                        <input type="text" id="uniforme_body" name="uniformes[]" class="form-control" placeholder="Uniforme body" 
+                        value="{{$aluno->uniformes[0]}}">
                     </div> 
 
                     <label for="uniforme_saia" class="col-sm-2 col-form-label ">Uniforme saia</label>
                     <div class="col-sm-1">
-                        <input type="text" id="uniforme_saia" name="uniformes[saia]" class="form-control" placeholder="Uniforme saia" >
+                        <input type="text" id="uniforme_saia" name="uniformes[]" class="form-control" placeholder="Uniforme saia" 
+                        value="{{$aluno->uniformes[1]}}">
                     </div> 
 
                     <label for="uniforme_camisa" class="col-sm-2 col-form-label ">Uniforme camisa</label>
                     <div class="col-sm-1">
-                        <input type="text" id="uniforme_camisa" name="uniformes[camisa]" class="form-control" placeholder="Camisa camisa" >
+                        <input type="text" id="uniforme_camisa" name="uniformes[]" class="form-control" placeholder="Camisa camisa" 
+                        value="{{$aluno->uniformes[2]}}">
                     </div> 
 
                     <label for="uniforme_calcado" class="col-sm-2 col-form-label ">Nr. Calçado</label>
                     <div class="col-sm-1">
-                        <input type="text" id="uniforme_calcado" name="uniformes[calcado]" class="form-control" placeholder="Nr calçado" >
+                        <input type="text" id="uniforme_calcado" name="uniformes[]" class="form-control" placeholder="Nr calçado" 
+                        value="{{$aluno->uniformes[3]}}">
                     </div> 
                 </div>
 

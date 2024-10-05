@@ -4,17 +4,21 @@
 
 @section('content')
 
-    <body class="antialiased">
+    <body class="antialiased"> 
         
         <form action="/alunos" method="POST" enctype="multipart/form-data">
         @csrf 
+
+        <!--enviar id do candidato para exluir no controller -->
+        <input type="hidden" name="candidato_id" value="{{ $candidato->id }}">
 
             <div class="container ml-5"> 
 
                 <div class="form-group row"> 
                     <label for="nome" class="col-sm-2 col-form-label">Nome</label>
                     <div class="col-sm-6">
-                        <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome do aluno" required>
+                        <input type="text" id="nome" name="nome" class="form-control"  
+                        value="{{ old('nome', $candidato->pessoa->nome)}}" required>
                     </div>
                 </div>
 
@@ -36,14 +40,42 @@
                 </div> 
 
                 <div class="form-group row "> 
+                    <label for="telefone" class="col-sm-2 col-form-label ">Telefone</label>
+                    <div class="col-sm-2">
+                        <input type="text" id="telefone" name="telefone" class="form-control" 
+                        value="{{ old('nome', $candidato->pessoa->contato->telefone)}}">
+                    </div>
+
+                    <label for="email" class="col-sm-1 col-form-label ">Email</label>
+                    <div class="col-sm-3">
+                        <input type="text" id="email" name="email" class="form-control" 
+                        value="{{ old('email', $candidato->pessoa->contato->email)}}">
+                    </div>
+
+                    <label for="data_nascimento" class="col-sm-2 col-form-label ">Data Nascimento</label>
+                    <div class="col-sm-2">
+                        <input type="text" id="data_nascimento" name="data_nascimento"
+                        >
+                        
+                        @if($errors->has('data_nascimento'))
+                            <span class="text-danger">
+                                {{ $errors->first('data_nascimento') }}
+                            </span>
+                        @endif
+                        
+                        <script>
+                            $(document).ready(function(){
+                                $("#data_nascimento").inputmask("99/99/9999");  // Máscara no formato DD/MM/YYYY
+                            });
+                        </script>
+                    </div> 
+                    
+                </div>
+
+                <div class="form-group row "> 
                     <label for="endereco" class="col-sm-2 col-form-label ">Endereço</label>
                     <div class="col-sm-6">
                         <input type="text" id="endereco" name="endereco" class="form-control" placeholder="Endereço do aluno">
-                    </div>
-
-                    <label for="telefone" class="col-sm-2 col-form-label ">Telefone</label>
-                    <div class="col-sm-2">
-                        <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone do aluno">
                     </div>
                 </div>
 
@@ -62,12 +94,14 @@
                 <div class="form-group row "> 
                     <label for="nome_responsavel" class="col-sm-2 col-form-label ">Outro responsável</label>
                     <div class="col-sm-4">
-                        <input type="text" id="nome_responsavel" name="nome_responsavel" class="form-control" placeholder="Nome  do Responsável" >
+                        <input type="text" id="nome_responsavel" name="nome_responsavel" class="form-control" 
+                        value="{{ old('nome', $candidato->pessoa->nome_responsavel)}}" >
                     </div>
 
                     <label for="parentesco_responsavel" class="col-sm-1 col-form-label ">Parentesco</label>
                     <div class="col-sm-2">
-                        <input type="text" id="parentesco_responsavel" name="parentesco_responsavel" class="form-control" placeholder="Parentesco do responsável" >
+                        <input type="text" id="parentesco_responsavel" name="parentesco_responsavel" class="form-control" 
+                        value="{{ old('nome', $candidato->pessoa->parentesco_responsavel)}}" >
                     </div>
 
                     <label for="telefone_responsavel" class="col-sm-1 col-form-label ">Telefone</label>
@@ -77,22 +111,7 @@
                 </div>
 
                 <div class="form-group row "> 
-                    <label for="data_nascimento" class="col-sm-2 col-form-label ">Data Nascimento</label>
-                    <div class="col-sm-2">
-                        <input type="text" id="data_nascimento" name="data_nascimento">
-                        
-                        @if($errors->has('data_nascimento'))
-                            <span class="text-danger">
-                                {{ $errors->first('data_nascimento') }}
-                            </span>
-                        @endif
-                        
-                        <script>
-                            $(document).ready(function(){
-                                $("#data_nascimento").inputmask("99/99/9999");  // Máscara no formato DD/MM/YYYY
-                            });
-                        </script>
-                    </div> 
+
 
                     <label for="estado_civil" class="col-sm-2 col-form-label ">Estado Civil</label>
                     <div class="col-sm-2">

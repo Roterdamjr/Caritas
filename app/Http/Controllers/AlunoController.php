@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Aluno;
 use App\Models\Contato;
 use App\Models\Pessoa;
+use App\Models\Candidato;
 use Carbon\Carbon;
 
 class AlunoController extends Controller
@@ -15,12 +16,20 @@ class AlunoController extends Controller
         return view('alunos.dashboard' ,['alunos'=>$alunos] );
     }
 
-    public function create(){
-        return view('alunos.create');
+    public function choose(){
+        $candidatos = Candidato::with('contato')->get();
+        return view('alunos.choose', ['candidatos'=>$candidatos]);
+    }
+
+    public function create($id){
+        $candidato =Candidato::findOrFail($id);
+        return view('alunos.create',['candidato'=>$candidato]);
     }
 
      //*********************** incluir **************
     public function store(Request $request){
+
+        //------- pessoa ---------//
         $pessoa = new Pessoa;
         $pessoa->nome                   = $request->nome;
         $pessoa->nome_mae               = $request->nome_mae;
@@ -42,12 +51,14 @@ class AlunoController extends Controller
         $pessoa->cor = $request->cor;
         $pessoa->save();
 
+         //------- contato ---------//
         $contato = new Contato();
         $contato->pessoa_id =   $pessoa->id;
         $contato->telefone  =   $request->telefone;
         $contato->endereco  =   $request->endereco;
         $contato->save();
-
+        
+        //------- aluno ---------//
         $aluno = new Aluno;
         $aluno->pessoa_id = $pessoa->id;
         $aluno->atividades = $request->atividades;
@@ -63,7 +74,13 @@ class AlunoController extends Controller
         $aluno->uniformes = $request->uniformes;
         $aluno->save();
 
+         //------- excluir candidato ---------//
+        $candidatoId = $request->candidato_id;
+        $candidato = Candidato::findOrFail($candidatoId);
+        $candidato->delete();
+
         return redirect('/alunos/dashboard')->with("msg","Aluno criado com sucesso");
+        //return redirect('/alunos/dashboard')->with("msg","id". $candidatoId);
     }
 
      //***************** exibir *********************
@@ -147,9 +164,11 @@ class AlunoController extends Controller
         $aluno->update(
             $request->except(['nome', 'data_nascimento','nome_mae','nome_pai','nome_responsavel', 
                             'parentesco_responsavel','telefone_responsavel', 'estado_civil','sexo','cor', 
-                            'telefone','endereco'])
+                            'telefone','endereco','email'])
         ); // Atualiza tudo exceto os campos da pessoa
+
         $aluno->update(['atividades' => $request->atividades]);
+        $aluno->update(['uniformes' => $request->uniformes]);
 
         return redirect('/alunos/dashboard')->with("msg", "Aluno alterado com sucesso"  );
     }

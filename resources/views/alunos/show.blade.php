@@ -6,6 +6,7 @@
 
 <body class="antialiased">
 
+
     <div class="container ml-5"> 
 
         <div class="form-group row"> 
@@ -59,7 +60,7 @@
         </div>
 
         <div class="form-group row "> 
-            <label for="profissao" class="col-sm-3 col-form-label "> Profissão: "{{$aluno->profissao}}"</label>
+            <label for="profissao" class="col-sm-3 col-form-label "> Profissão: {{$aluno->profissao}}</label>
             <label for="escolaridade" class="col-sm-3 col-form-label "> Escolaridade:  {{ $aluno->escolaridade }}</label>
             <label for="ano_escolar" class="col-sm-2 col-form-label "> Ano: {{$aluno->ano_escolar}}</label>
             <label for="turno" class="col-sm-2 col-form-label ">Turno: {{$aluno->turno}}</label>
@@ -83,10 +84,18 @@
         </div>
 
         <div class="form-group row "> 
-            <label for="uniforme_body" class="col-sm-3 col-form-label ">Uniforme body</label>
-            <label for="uniforme_saia" class="col-sm-3 col-form-label ">Uniforme saia</label>
-            <label for="uniforme_camisa" class="col-sm-3 col-form-label ">Uniforme camisa</label>
-            <label for="uniforme_calcado" class="col-sm-3 col-form-label ">Nr. Calçado</label>
+            <label for="uniforme_body" class="col-sm-3 col-form-label ">
+                Uniforme body: {{$aluno->uniformes[0]}}
+            </label>
+            <label for="uniforme_saia" class="col-sm-3 col-form-label ">
+                Uniforme saia: {{$aluno->uniformes[1]}}
+            </label>
+            <label for="uniforme_camisa" class="col-sm-3 col-form-label ">
+                Uniforme camisa: {{$aluno->uniformes[2]}}
+            </label>
+            <label for="uniforme_calcado" class="col-sm-3 col-form-label ">
+                Nr. Calçado: {{$aluno->uniformes[3]}}
+            </label>
 
         </div>
 

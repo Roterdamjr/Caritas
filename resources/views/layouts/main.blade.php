@@ -31,7 +31,7 @@
                             <a class="nav-link active " id="home-link" href="/candidatos/dashboard">Candidatos</a>
                             <a class="nav-link active " href="/candidatos/create">Adicionar Candidato</a>
                             <a class="nav-link active " href="/alunos/dashboard">Alunos</a>
-                            <a class="nav-link active " href="/alunos/create">Adicionar Aluno</a>
+                            <a class="nav-link active " href="/alunos/choose">Adicionar Aluno</a>
                         @endauth
                     </div>
 
