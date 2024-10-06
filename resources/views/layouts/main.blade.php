@@ -38,6 +38,10 @@
                     <!-- Logout alinhado à direita -->
                     <div class="navbar-nav ml-auto">
                         @auth
+                            @if (Auth::user()->email === 'roterdam.junior@gmail.com')
+                                <a href="/register" class="nav-link">Registrar</a>
+                            @endif
+
                             <form action="/logout" method="POST">
                                 @csrf
                                 <a href="/logout" class="nav-link" onclick="event.preventDefault(); 

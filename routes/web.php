@@ -19,13 +19,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/register', [ AuthController::class , 'register' ]);
-Route::post('/register', [ AuthController::class , 'registerPost' ]) ;
+
 
 Route::get('/login', [ AuthController::class , 'login' ])->name('login');
 Route::post('/login', [ AuthController::class , 'loginPost' ]) ;
 
 Route::post('/logout', [AuthController::class, 'logout']);
+
+// ********************************** REGISTRAR ********************************
+Route::get('/register', [ AuthController::class , 'register' ])->middleware('auth');
+Route::post('/register', [ AuthController::class , 'registerPost' ])->middleware('auth') ;
 
 // ********************************** CANDIDATOS ********************************
 //exibir varios 

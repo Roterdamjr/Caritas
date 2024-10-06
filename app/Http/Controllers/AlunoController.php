@@ -185,4 +185,6 @@ class AlunoController extends Controller
             
             return redirect('/alunos/dashboard')->with("msg","Aluno excluído com sucesso");
         }
+
+
 }

@@ -66,4 +66,9 @@ class AuthController extends Controller
 
         return redirect('/login'); // Redireciona para a tela de login
     }
+
+    public function teste()
+    {
+        return view('auth.teste');
+    }
 }
