@@ -9,8 +9,8 @@
         <form action="/alunos" method="POST" enctype="multipart/form-data" class="form-cadastro">
         @csrf 
 
-        <!--enviar id do candidato para exluir no controller -->
-        <input type="hidden" name="candidato_id" value="{{ $candidato->id }}">
+            <!--enviar id do candidato para exluir no controller -->
+            <input type="hidden" name="candidato_id" value="{{ $candidato->id }}">
 
             <div class="container ml-5"> 
 

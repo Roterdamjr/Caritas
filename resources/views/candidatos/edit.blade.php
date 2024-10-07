@@ -78,7 +78,7 @@
                                 <div class="form-check">
                                     <input type="checkbox" name="atividades[]" value="{{ $atividade }}" 
                                         class="form-check-input" 
-                                        @if(in_array($atividade, $candidato->atividades)) checked @endif
+                                        @if(is_array($candidato->atividades) && in_array($atividade, $candidato->atividades)) checked @endif
                                     >
                                     <label class="form-check-label">{{ $atividade }}</label>
                                 </div>
