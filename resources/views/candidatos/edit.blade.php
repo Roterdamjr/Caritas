@@ -6,7 +6,7 @@
 
     <body class="antialiased">
         
-        <form action="/candidatos/update/{{$candidato->id}}" method="POST" enctype="multipart/form-data">
+        <form action="/candidatos/update/{{$candidato->id}}" method="POST" enctype="multipart/form-data" class="form-cadastro">
         @csrf 
         @method('PUT')
 

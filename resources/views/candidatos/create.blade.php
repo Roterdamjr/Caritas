@@ -6,7 +6,7 @@
 
     <body class="antialiased">
         
-        <form action="/candidatos" method="POST" enctype="multipart/form-data">
+        <form action="/candidatos" method="POST" enctype="multipart/form-data" class="form-cadastro" >
         @csrf 
 
             <div class="container ml-5"> 

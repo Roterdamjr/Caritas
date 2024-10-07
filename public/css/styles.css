@@ -3,6 +3,14 @@ html, body {
   margin: 0;
 }
 
+.form-cadastro {
+  background-color: #b3ccca;
+  border: 2px solid #007bff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -128,5 +136,9 @@ body {
   #home-link {
     display: none;
   }
+
+
+
+
 
 }

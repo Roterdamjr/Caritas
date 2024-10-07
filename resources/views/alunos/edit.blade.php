@@ -4,9 +4,10 @@
 
 @section('content')
 
+    
     <body class="antialiased">
         
-        <form action="/alunos/update/{{$aluno->id}}" method="POST" enctype="multipart/form-data">
+        <form action="/alunos/update/{{$aluno->id}}" method="POST" enctype="multipart/form-data" class="form-cadastro">
         @csrf 
         @method('PUT')
 
@@ -14,10 +15,29 @@
 
                 <div class="form-group row"> 
                     <label for="nome" class="col-sm-2 col-form-label">Nome</label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-5">
                         <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome do aluno" 
                             value="{{$aluno->pessoa->nome}}" required>
                     </div>
+               
+                    <label for="data_nascimento" class="col-sm-2 col-form-label ">Data Nascimento</label>
+                    <div class="col-sm-2">
+                        <input type="text" id="data_nascimento" name="data_nascimento"
+                        value="{{$data_nascimento}}">
+                        
+                        @if($errors->has('data_nascimento'))
+                            <span class="text-danger">
+                                {{ $errors->first('data_nascimento') }}
+                            </span>
+                        @endif
+                        
+                        <script>
+                            $(document).ready(function(){
+                                $("#data_nascimento").inputmask("99/99/9999");  
+                            });
+                        </script>
+                    </div> 
+
                 </div>
 
                 <div class="form-group">
@@ -44,49 +64,34 @@
                             value="{{$aluno->pessoa->contato->telefone}}">
                     </div>
 
+                    <label for="" class="col-sm-4 col-form-label "></label>
+
                     <label for="email" class="col-sm-1 col-form-label ">Email</label>
                     <div class="col-sm-3">
                         <input type="text" id="email" name="email" class="form-control" 
                         value="{{$aluno->pessoa->contato->email}}">
                     </div>
-
-                    <label for="data_nascimento" class="col-sm-2 col-form-label ">Data Nascimento</label>
-                    <div class="col-sm-2">
-                        <input type="text" id="data_nascimento" name="data_nascimento"
-                        value="{{$data_nascimento}}">
-                        
-                        @if($errors->has('data_nascimento'))
-                            <span class="text-danger">
-                                {{ $errors->first('data_nascimento') }}
-                            </span>
-                        @endif
-                        
-                        <script>
-                            $(document).ready(function(){
-                                $("#data_nascimento").inputmask("99/99/9999");  
-                            });
-                        </script>
-                    </div> 
-
                 </div>
                 
                 <div class="form-group row ">
                     <label for="endereco" class="col-sm-2 col-form-label ">Endereço</label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <input type="text" id="endereco" name="endereco" class="form-control" placeholder="Endereço do aluno" 
                             value="{{$aluno->pessoa->contato->endereco}}">
                     </div>                 
                 </div>
                 
                 <div class="form-group row "> 
-                    <label for="nome_mae" class="col-sm-2 col-form-label ">Nome da mãe</label>
-                    <div class="col-sm-4">
+                    <label for="nome_mae" class="col-sm-2 col-form-label ">Mãe</label>
+                    <div class="col-sm-3">
                         <input type="text" id="nome_mae" name="nome_mae" class="form-control" placeholder="Nome da Mãe" 
                             value="{{$aluno->pessoa->nome_mae}}">
                     </div>
 
-                    <label for="nome_pai" class="col-sm-2 col-form-label ">Nome do pai</label>
-                    <div class="col-sm-4">
+                    <label for="" class="col-sm-3 col-form-label "></label>
+
+                    <label for="nome_pai" class="col-sm-1 col-form-label ">Pai</label>
+                    <div class="col-sm-3">
                         <input type="text" id="nome_pai" name="nome_pai" class="form-control" placeholder="Nome do Pai" 
                         value="{{$aluno->pessoa->nome_pai}}">
                     </div>
@@ -94,7 +99,7 @@
 
                 <div class="form-group row "> 
                     <label for="nome_responsavel" class="col-sm-2 col-form-label ">Outro responsável</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <input type="text" id="nome_responsavel" name="nome_responsavel" class="form-control" placeholder="Nome  do Responsável" 
                         value="{{$aluno->pessoa->nome_responsavel}}">
                     </div>
@@ -120,49 +125,61 @@
                         value="{{$aluno->pessoa->estado_civil}}">
                     </div> 
 
-                    <label for="sexo" class="col-sm-1 col-form-label ">Sexo</label>
-                    <select id="sexos" name="sexo">
-                        @foreach (['M', 'F'] as $sexo)
-                            <option value="{{ $sexo }}" 
-                                @if ($sexo == old('sexo', $aluno->pessoa->sexo)) selected @endif>
-                                {{ $sexo }}
-                            </option>
-                        @endforeach
-                    </select>
-
+                    <label for="" class="col-sm-1 col-form-label "></label>
 
                     <label for="cor" class="col-sm-1 col-form-label ">Cor</label>
-                    <div class="col-sm-1">
+                    <div class="col-sm-2">
                         <input type="text" id="cor" name="cor" class="form-control" placeholder="Cor do aluno" 
                         value="{{$aluno->pessoa->cor}}">
+                    </div> 
+
+                    <label for="sexo" class="col-sm-1 col-form-label ">Sexo</label>
+                    <div class="col-sm-1">
+                        <select id="sexos" name="sexo">
+                            @foreach (['M', 'F'] as $sexo)
+                                <option value="{{ $sexo }}" 
+                                    @if ($sexo == old('sexo', $aluno->pessoa->sexo)) selected @endif>
+                                    {{ $sexo }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row "> 
+                     <label for="profissao" class="col-sm-2 col-form-label ">Profissão</label>
+                    <div class="col-sm-3">
+                        <input type="text" id="profissao" name="profissao" class="form-control" placeholder="Profissão do aluno" 
+                        value="{{$aluno->profissao}}">
                     </div> 
                 </div>
 
                 <div class="form-group row "> 
-                    <label for="profissao" class="col-sm-2 col-form-label ">Profissão</label>
-                    <div class="col-sm-2">
-                        <input type="text" id="profissao" name="profissao" class="form-control" placeholder="Profissão do aluno" 
-                        value="{{$aluno->profissao}}">
-                    </div> 
-
                     <label for="escolaridade" class="col-sm-2 col-form-label ">Escolaridade</label>
-                    <select id="escolaridades" name="escolaridade">
-                        @foreach ([  'Fund. I completo',  'Fund. I incompleto',  'Fund. II completo',
-                                    'Fund. II incompleto','Médio completo',
-                                    'Médio incompleto','Superior completo','Superior incompleto'] 
-                                    as $escolaridade)
-                            <option value="{{ $escolaridade }}"
-                                @if ($escolaridade == old('escolaridade', $aluno->escolaridade)) selected @endif>
-                                {{ $escolaridade }}
-                            </option>
-                        @endforeach
-                    </select>
+
+                    <div class="col-sm-1">
+                        <select id="escolaridades" name="escolaridade">
+                            @foreach ([  'Fund. I completo',  'Fund. I incompleto',  'Fund. II completo',
+                                        'Fund. II incompleto','Médio completo',
+                                        'Médio incompleto','Superior completo','Superior incompleto'] 
+                                        as $escolaridade)
+                                <option value="{{ $escolaridade }}"
+                                    @if ($escolaridade == old('escolaridade', $aluno->escolaridade)) selected @endif>
+                                    {{ $escolaridade }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <label for="" class="col-sm-2 col-form-label "></label>
 
                     <label for="ano_escolar" class="col-sm-1 col-form-label ">Ano</label>
                     <div class="col-sm-1">
                         <input type="text" id="ano_escolar" name="ano_escolar" class="form-control" placeholder="Ano de escolaridade" 
                             value="{{$aluno->ano_escolar}}">
                     </div> 
+
+                    <label for="" class="col-sm-1 col-form-label "></label>
 
                     <label for="turno" class="col-sm-1 col-form-label ">Turno</label>
                     <div class="col-sm-1">
@@ -192,17 +209,19 @@
                             value="{{$aluno->acompanhamento}}">
                     </div> 
 
-                    <label for="comunidade" class="col-sm-2 col-form-label ">Comunidade</label>
-                    <select id="comunidades" name="comunidade">
+                    <label for="comunidade" class="col-sm-1 col-form-label ">Comunidade</label>
+                    <div class="col-sm-1">
+                        <select id="comunidades" name="comunidade">
 
-                        @foreach ([  'Céu Azul','Rato Molhado','Dois de Maio','São João','Matriz'] 
-                                as $comunidade)
-                            <option value="{{ $comunidade }}"
-                                @if ($comunidade == old('comunidade', $aluno->comunidade)) selected @endif>
-                                {{ $comunidade }}
-                            </option>
-                        @endforeach
-                    </select>
+                            @foreach ([  'Céu Azul','Rato Molhado','Dois de Maio','São João','Matriz'] 
+                                    as $comunidade)
+                                <option value="{{ $comunidade }}"
+                                    @if ($comunidade == old('comunidade', $aluno->comunidade)) selected @endif>
+                                    {{ $comunidade }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group row "> 
@@ -220,19 +239,19 @@
                         value="{{$aluno->uniformes[0]}}">
                     </div> 
 
-                    <label for="uniforme_saia" class="col-sm-2 col-form-label ">Uniforme saia</label>
+                    <label for="uniforme_saia" class="col-sm-1 col-form-label ">Saia</label>
                     <div class="col-sm-1">
                         <input type="text" id="uniforme_saia" name="uniformes[]" class="form-control" placeholder="Uniforme saia" 
                         value="{{$aluno->uniformes[1]}}">
                     </div> 
 
-                    <label for="uniforme_camisa" class="col-sm-2 col-form-label ">Uniforme camisa</label>
+                    <label for="uniforme_camisa" class="col-sm-1 col-form-label ">Camisa</label>
                     <div class="col-sm-1">
                         <input type="text" id="uniforme_camisa" name="uniformes[]" class="form-control" placeholder="Camisa camisa" 
                         value="{{$aluno->uniformes[2]}}">
                     </div> 
 
-                    <label for="uniforme_calcado" class="col-sm-2 col-form-label ">Nr. Calçado</label>
+                    <label for="uniforme_calcado" class="col-sm-1 col-form-label ">Calçado</label>
                     <div class="col-sm-1">
                         <input type="text" id="uniforme_calcado" name="uniformes[]" class="form-control" placeholder="Nr calçado" 
                         value="{{$aluno->uniformes[3]}}">

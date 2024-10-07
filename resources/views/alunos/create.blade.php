@@ -6,7 +6,7 @@
 
     <body class="antialiased"> 
         
-        <form action="/alunos" method="POST" enctype="multipart/form-data">
+        <form action="/alunos" method="POST" enctype="multipart/form-data" class="form-cadastro">
         @csrf 
 
         <!--enviar id do candidato para exluir no controller -->
@@ -23,8 +23,7 @@
 
                     <label for="data_nascimento" class="col-sm-2 col-form-label ">Data Nascimento</label>
                     <div class="col-sm-2">
-                        <input type="text" id="data_nascimento" name="data_nascimento"
-                        >
+                        <input type="text" id="data_nascimento" name="data_nascimento">
                         
                         @if($errors->has('data_nascimento'))
                             <span class="text-danger">
@@ -42,7 +41,6 @@
                 </div>
 
                 <div class="form-group">
-
                     <div class="form-group row"> 
                         @foreach (['Arte que Ajuda', 'Ação de Caritas', 'Ballet', 'Biblioteca Com.', 'Canto Coral', 
                                 'Flauta Doce', 'Gestação Acolhida', 'Reforço Escolar', 'Sapateado', 'Teatro', 'Violino', 'Violão'] 
@@ -192,9 +190,7 @@
                         <input type="text" id="acompanhamento" name="acompanhamento" class="form-control" placeholder="Aompanhamento especial" >
                     </div> 
 
-                    <label for="" class="col-sm-3 col-form-label "></label>
-
-                    <label for="comunidade" class="col-sm-2 col-form-label ">Comunidade</label>
+                    <label for="comunidade" class="col-sm-1 col-form-label ">Comunidade</label>
                     <div class="col-sm-1">
                         <select id="comunidades" name="comunidade">
                             @foreach ([ '', 'Céu Azul','Rato Molhado','Dois de Maio','São João','Matriz'] 
@@ -213,22 +209,22 @@
                 </div>
 
                 <div class="form-group row "> 
-                    <label for="uniforme_body" class="col-sm-2 col-form-label ">Uniforme body</label>
+                    <label for="uniforme_body" class="col-sm-2 col-form-label ">Body</label>
                     <div class="col-sm-1">
                         <input type="text" id="uniforme_body" name="uniformes[]" class="form-control" placeholder="Uniforme body" >
                     </div> 
 
-                    <label for="uniforme_saia" class="col-sm-2 col-form-label ">Uniforme saia</label>
+                    <label for="uniforme_saia" class="col-sm-1 col-form-label ">Saia</label>
                     <div class="col-sm-1">
                         <input type="text" id="uniforme_saia" name="uniformes[]" class="form-control" placeholder="Uniforme saia" >
                     </div> 
 
-                    <label for="uniforme_camisa" class="col-sm-2 col-form-label ">Uniforme camisa</label>
+                    <label for="uniforme_camisa" class="col-sm-1 col-form-label ">Camisa</label>
                     <div class="col-sm-1">
                         <input type="text" id="uniforme_camisa" name="uniformes[]" class="form-control" placeholder="Camisa camisa" >
                     </div> 
 
-                    <label for="uniforme_calcado" class="col-sm-2 col-form-label ">Nr. Calçado</label>
+                    <label for="uniforme_calcado" class="col-sm-1 col-form-label ">Calçado</label>
                     <div class="col-sm-1">
                         <input type="text" id="uniforme_calcado" name="uniformes[]" class="form-control" placeholder="Nr calçado" >
                     </div> 
