@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CandidatoController;
 use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\PDFController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,3 +73,4 @@ Route::put('/alunos/update/{id}', [ AlunoController::class , 'update' ])->middle
 //deletar
 Route::delete('/alunos/{id}', [ AlunoController::class , 'destroy' ])->middleware('auth');
 
+Route::get('/baixar-pdf', [PDFController::class, 'gerarPDF']);
