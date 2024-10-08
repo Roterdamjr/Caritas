@@ -7,6 +7,7 @@ use App\Models\Candidato;
 use App\Models\Contato;
 use App\Models\Pessoa;
 use Carbon\Carbon;
+use PDF;
 
 class CandidatoController extends Controller
 {
@@ -123,8 +124,24 @@ class CandidatoController extends Controller
         $candidato->delete();
         $pessoa->delete();
         
-
         return redirect('/candidatos/dashboard')->with("msg","Candidato excluído com sucesso");
+    }
+
+    public function gerarPDF($id)
+    {
+        $candidato =Candidato::findOrFail($id);
+
+        $data = [   'nome' => $candidato->pessoa->nome,
+                    'telefone' => $candidato->pessoa->contato->telefone,
+                    'email' => $candidato->pessoa->contato->email,
+                    'data_nascimento' => $candidato->pessoa->data_nascimento,
+                    'responsavel' => $candidato->pessoa->responsavel,
+                    'parentesco_responsavel' => $candidato->pessoa->parentesco_responsavel,
+                    'atividades' => $candidato->atividades];
+
+        $pdf = PDF::loadView('meu_pdf_view', $data);
+
+        return $pdf->download('meu_arquivo.pdf');
     }
 }
 

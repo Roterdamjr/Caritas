@@ -53,6 +53,9 @@ Route::put('/candidatos/update/{id}', [ CandidatoController::class , 'update' ])
 //deletar
 Route::delete('/candidatos/{id}', [ CandidatoController::class , 'destroy' ])->middleware('auth');
 
+//imprimir
+Route::get('/candidatos/imprimir/{id}', [CandidatoController::class, 'gerarPDF']);
+
 // ********************************** ALUNOS ********************************
 Route::get('/alunos/choose', [ AlunoController::class , 'choose' ])->middleware('auth');
 
@@ -73,4 +76,4 @@ Route::put('/alunos/update/{id}', [ AlunoController::class , 'update' ])->middle
 //deletar
 Route::delete('/alunos/{id}', [ AlunoController::class , 'destroy' ])->middleware('auth');
 
-Route::get('/baixar-pdf', [PDFController::class, 'gerarPDF']);
+//Route::get('/baixar-pdf', [PDFController::class, 'gerarPDF']);
