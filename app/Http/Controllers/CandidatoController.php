@@ -131,15 +131,19 @@ class CandidatoController extends Controller
     {
         $candidato =Candidato::findOrFail($id);
 
+        $dataNascimento = $candidato->pessoa->data_nascimento  ? 
+        \Carbon\Carbon::parse($candidato->pessoa->data_nascimento)->format('d/m/Y')
+        : null;  
+        
         $data = [   'nome' => $candidato->pessoa->nome,
                     'telefone' => $candidato->pessoa->contato->telefone,
                     'email' => $candidato->pessoa->contato->email,
-                    'data_nascimento' => $candidato->pessoa->data_nascimento,
-                    'responsavel' => $candidato->pessoa->responsavel,
+                    'data_nascimento' => $dataNascimento,
+                    'nome_responsavel' => $candidato->pessoa->nome_responsavel,
                     'parentesco_responsavel' => $candidato->pessoa->parentesco_responsavel,
                     'atividades' => $candidato->atividades];
 
-        $pdf = PDF::loadView('meu_pdf_view', $data);
+        $pdf = PDF::loadView('candidatos/pdf', $data);
 
         return $pdf->download('meu_arquivo.pdf');
     }

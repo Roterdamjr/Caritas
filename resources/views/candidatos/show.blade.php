@@ -6,10 +6,6 @@
 
 <form action="/candidatos/imprimir/{{$candidato->id}}" method="GET" enctype="multipart/form-data" class="form-cadastro">
 
-<!--  
-    <form action="/baixar-pdf" method="GET" enctype="multipart/form-data" class="form-cadastro">
--->
-
         <p class="event-city"> Nome:
                 <ion-icon name="location-outline"> </ion-icon>{{$candidato->pessoa->nome}}
         </p>

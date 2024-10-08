@@ -76,4 +76,5 @@ Route::put('/alunos/update/{id}', [ AlunoController::class , 'update' ])->middle
 //deletar
 Route::delete('/alunos/{id}', [ AlunoController::class , 'destroy' ])->middleware('auth');
 
-//Route::get('/baixar-pdf', [PDFController::class, 'gerarPDF']);
+//imprimir
+Route::get('/alunos/imprimir/{id}', [AlunoController::class, 'gerarPDF']);

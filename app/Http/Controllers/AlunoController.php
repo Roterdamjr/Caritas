@@ -8,6 +8,7 @@ use App\Models\Contato;
 use App\Models\Pessoa;
 use App\Models\Candidato;
 use Carbon\Carbon;
+use PDF;
 
 class AlunoController extends Controller
 {
@@ -156,7 +157,8 @@ class AlunoController extends Controller
 
         $contato->update([
             'telefone' => $request->telefone,
-            'endereco' => $request->endereco
+            'endereco' => $request->endereco,
+            'email' => $request->email
         ]);
 
                 /*----  atualiza aluno ----*/
@@ -186,5 +188,42 @@ class AlunoController extends Controller
             return redirect('/alunos/dashboard')->with("msg","Aluno excluído com sucesso");
         }
 
-
+        public function gerarPDF($id)
+        {
+            $aluno =Candidato::findOrFail($id);
+    
+            $dataNascimento = $aluno->pessoa->data_nascimento  ? 
+            \Carbon\Carbon::parse($aluno->pessoa->data_nascimento)->format('d/m/Y')
+            : null;  
+            
+            $data = [   'nome'                  => $aluno->pessoa->nome,
+                        'atividades'            => $aluno->atividades,
+                        'data_nascimento'       => $dataNascimento,
+                        'telefone'              => $aluno->pessoa->contato->telefone,
+                        'email'                 => $aluno->pessoa->contato->email,
+                        'endereco'              => $aluno->pessoa->contato->endereco,
+                        'nome_mae'              => $aluno->pessoa->nome_mae,
+                        'nome_pai'              => $aluno->pessoa->nome_pai,
+                        'nome_responsavel'      => $aluno->pessoa->nome_responsavel,
+                        'parentesco_responsavel' => $aluno->pessoa->parentesco_responsavel,
+                        'telefone_responsavel'  => $aluno->pessoa->contato->telefone_responsavel,
+                        'estado_civil'          => $aluno->estado_civil,
+                        'sexo'                  => $aluno->sexo,
+                        'cor'                   => $aluno->cor,
+                        'profissao'             => $aluno->profissao,
+                        'escolaridade'          => $aluno->escolaridade,
+                        'ano_escolar'           => $aluno->ano_escolar,
+                        'turno'                 => $aluno->turno,
+                        'clinica'               => $aluno->clinica,
+                        'beneficio'             => $aluno->beneficio,
+                        'acompanhamento'        => $aluno->acompanhamento,
+                        'comunidade'             => $aluno->comunidade,
+                        'necessidade_especial'   => $aluno->necessidade_especial,
+                        'uniformes'             => $aluno->uniformes
+                    ];
+    
+            $pdf = PDF::loadView('alunos/pdf', $data);
+    
+            return $pdf->download('meu_arquivo.pdf');
+        }
 }
