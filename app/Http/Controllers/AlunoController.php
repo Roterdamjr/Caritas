@@ -190,7 +190,7 @@ class AlunoController extends Controller
 
         public function gerarPDF($id)
         {
-            $aluno =Candidato::findOrFail($id);
+            $aluno =Aluno::findOrFail($id);
     
             $dataNascimento = $aluno->pessoa->data_nascimento  ? 
             \Carbon\Carbon::parse($aluno->pessoa->data_nascimento)->format('d/m/Y')
@@ -206,10 +206,10 @@ class AlunoController extends Controller
                         'nome_pai'              => $aluno->pessoa->nome_pai,
                         'nome_responsavel'      => $aluno->pessoa->nome_responsavel,
                         'parentesco_responsavel' => $aluno->pessoa->parentesco_responsavel,
-                        'telefone_responsavel'  => $aluno->pessoa->contato->telefone_responsavel,
-                        'estado_civil'          => $aluno->estado_civil,
-                        'sexo'                  => $aluno->sexo,
-                        'cor'                   => $aluno->cor,
+                        'telefone_responsavel'  => $aluno->pessoa->telefone_responsavel,
+                        'estado_civil'          => $aluno->pessoa->estado_civil,
+                        'sexo'                  => $aluno->pessoa->sexo,
+                        'cor'                   => $aluno->pessoa->cor,
                         'profissao'             => $aluno->profissao,
                         'escolaridade'          => $aluno->escolaridade,
                         'ano_escolar'           => $aluno->ano_escolar,
@@ -225,5 +225,8 @@ class AlunoController extends Controller
             $pdf = PDF::loadView('alunos/pdf', $data);
     
             return $pdf->download('meu_arquivo.pdf');
+
         }
+
+
 }
