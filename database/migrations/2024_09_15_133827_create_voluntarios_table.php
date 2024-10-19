@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('candidatos', function (Blueprint $table) {
-            $table->json("atividades")->nullable();
+        Schema::create('voluntarios', function (Blueprint $table) {
+            $table->id();
+            $table->date('data_reserva');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('candidatos', function (Blueprint $table) {
-            $table->dropColumn("atividades");
-        });
+        Schema::dropIfExists('voluntarios');
     }
 };

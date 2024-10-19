@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Candidatos')
+@section('title', 'Voluntários')
 
 @section('content')
 
@@ -19,26 +19,26 @@
     
 
     <tbody>
-        @foreach($candidatos as $candidato)
+        @foreach($voluntarios as $voluntario)
             <tr>
-                <td scope="row" class="col-id">{{$candidato->id}}</td>
-                <td scope="row">{{$candidato->pessoa->nome}}</td>
-                <td scope="row">{{$candidato->pessoa->contato->email}}</td>
+                <td scope="row" class="col-id">{{$voluntario->id}}</td>
+                <td scope="row">{{$voluntario->pessoa->nome}}</td>
+                <td scope="row">{{$voluntario->pessoa->contato->email}}</td>
                 
                 <td class="actions">
-                    <a href="/candidatos/{{$candidato->id}}">
+                    <a href="/voluntarios/{{$voluntario->id}}">
                         <i class="fas fa-eye check-icon"></i>
                     </a>
 
-                    <a href="/candidatos/edit/{{$candidato->id}} ">
+                    <a href="/voluntarios/edit/{{$voluntario->id}} ">
                         <i class="far fa-edit edit-icon"></i>
                     </a>
 
-                    <form class="delete-form" action="/candidatos/{{$candidato->id}}" method="POST">
+                    <form class="delete-form" action="/voluntarios/{{$voluntario->id}}" method="POST">
                     @csrf 
                     @method('DELETE')
                         <input type="hidden" name="type" value="delete">
-                        <input type="hidden" name="id" value="{{$candidato->id}}">
+                        <input type="hidden" name="id" value="{{$voluntario->id}}">
                         <button type="submit" class="delete-btn"><i class="fas fa-times delete-icon"></i></button>
                     </form>
                 </td>

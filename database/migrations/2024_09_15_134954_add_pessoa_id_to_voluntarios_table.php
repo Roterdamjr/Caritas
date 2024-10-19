@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('candidatos', function (Blueprint $table) {
-            $table->id();
-            $table->date('data_reserva');
-            $table->timestamps();
+        Schema::table('voluntarios', function (Blueprint $table) {
+            $table->foreignId('pessoa_id')->constrained();
         });
     }
 
@@ -27,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('candidatos');
+        Schema::table('voluntarios', function (Blueprint $table) {
+            $table->foreignId('pessoa_id')->constrained()->onDelete('cascade');
+        });
     }
 };

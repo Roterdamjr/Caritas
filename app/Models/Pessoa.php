@@ -16,9 +16,9 @@ class Pessoa extends Model
         'parentesco_responsavel'
     ];
 
-    public function candidato()
+    public function voluntario()
     {
-        return $this->hasOne(Candidato::class);
+        return $this->hasOne(Voluntario::class);
     }
 
     public function contato()

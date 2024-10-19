@@ -6,7 +6,7 @@
 
     <body class="antialiased">
         
-        <form action="/candidatos" method="POST" enctype="multipart/form-data" class="form-cadastro" >
+        <form action="/voluntarios" method="POST" enctype="multipart/form-data" class="form-cadastro" >
         @csrf 
 
             <div class="container ml-5"> 
@@ -80,7 +80,7 @@
      
                 </div> 
 
-                <input type="submit" class="btn btn-primary" value="Cadastrar candidato">
+                <input type="submit" class="btn btn-primary" value="Cadastrar voluntário">
             </div> <!-- Fim do container com a margem --> 
         </form> 
 

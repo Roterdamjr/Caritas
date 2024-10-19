@@ -29,10 +29,10 @@
                 <div class="navbar-collapse collapse">
                     <div class="navbar-nav">
                         @auth
-                            <a class="nav-link active " id="home-link" href="/candidatos/dashboard">Candidatos</a>
-                            <a class="nav-link active " href="/candidatos/create">Adicionar Candidato</a>
-                            <a class="nav-link active " href="/alunos/dashboard">Alunos</a>
-                            <a class="nav-link active " href="/alunos/choose">Adicionar Aluno</a>
+                            <a class="nav-link active " id="home-link" href="/alunos/dashboard">Alunos</a>
+                            <a class="nav-link active " href="/alunos/create">Adicionar Alunos</a>
+                            <a class="nav-link active " href="/voluntarios/dashboard">Voluntarios</a>
+                            <a class="nav-link active " href="/voluntarios/choose">Adicionar Voluntarios</a>
                         @endauth
                     </div>
 

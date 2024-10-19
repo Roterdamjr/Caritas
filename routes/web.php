@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\VoluntarioController;
 use App\Http\Controllers\CandidatoController;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\PDFController;
@@ -32,6 +33,34 @@ Route::post('/logout', [AuthController::class, 'logout']);
 // ********************************** REGISTRAR ********************************
 Route::get('/register', [ AuthController::class , 'register' ])->middleware('auth');
 Route::post('/register', [ AuthController::class , 'registerPost' ])->middleware('auth') ;
+
+/*
+Route::get('/register', [ AuthController::class , 'register' ]);
+Route::post('/register', [ AuthController::class , 'registerPost' ]) ;
+*/
+
+// ********************************** VOLUNTARIOS ********************************
+//exibir varios 
+Route::get('/voluntarios/dashboard', [ VoluntarioController::class , 'dashboard' ])->middleware('auth');
+
+//incluir
+Route::get('/voluntarios/create', [ VoluntarioController::class , 'create' ])->middleware('auth');
+Route::post('/voluntarios', [ VoluntarioController::class , 'store' ])->middleware('auth');
+
+
+//exibir um 
+Route::get('/voluntarios/{id}', [ VoluntarioController::class , 'show' ])->middleware('auth');
+
+//alterar
+Route::get('/voluntarios/edit/{id}', [ VoluntarioController::class , 'edit' ])->middleware('auth');
+Route::put('/voluntarios/update/{id}', [ VoluntarioController::class , 'update' ])->middleware('auth');
+
+
+//deletar
+Route::delete('/voluntarios/{id}', [ VoluntarioController::class , 'destroy' ])->middleware('auth');
+
+//imprimir
+Route::get('/voluntarios/imprimir/{id}', [VoluntarioController::class, 'gerarPDF']);
 
 // ********************************** CANDIDATOS ********************************
 //exibir varios 
