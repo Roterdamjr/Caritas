@@ -258,7 +258,7 @@
                     </div> 
                 </div>
 
-                <input type="submit" class="btn btn-primary" value="Editar Aluno">
+                <input type="submit" class="btn btn-primary" value="Editar">
             </div> <!-- Fim do container com a margem --> 
         </form> 
 

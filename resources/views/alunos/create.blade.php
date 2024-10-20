@@ -230,7 +230,7 @@
                     </div> 
                 </div>
 
-                <input type="submit" class="btn btn-primary" value="Cadastrar Aluno">
+                <input type="submit" class="btn btn-primary" value="Cadastrar">
             </div> <!-- Fim do container com a margem --> 
         </form> 
 

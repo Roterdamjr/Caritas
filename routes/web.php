@@ -31,13 +31,13 @@ Route::post('/login', [ AuthController::class , 'loginPost' ]) ;
 Route::post('/logout', [AuthController::class, 'logout']);
 
 // ********************************** REGISTRAR ********************************
-Route::get('/register', [ AuthController::class , 'register' ])->middleware('auth');
-Route::post('/register', [ AuthController::class , 'registerPost' ])->middleware('auth') ;
+//Route::get('/register', [ AuthController::class , 'register' ])->middleware('auth');
+//Route::post('/register', [ AuthController::class , 'registerPost' ])->middleware('auth') ;
 
-/*
+
 Route::get('/register', [ AuthController::class , 'register' ]);
 Route::post('/register', [ AuthController::class , 'registerPost' ]) ;
-*/
+
 
 // ********************************** VOLUNTARIOS ********************************
 //exibir varios 

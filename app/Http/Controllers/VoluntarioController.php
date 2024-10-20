@@ -23,7 +23,10 @@ class VoluntarioController extends Controller
     public function store(Request $request){
         $pessoa = new Pessoa;
         $pessoa->nome = $request->nome;
-/*
+        $pessoa->rg = $request->rg;
+        $pessoa->orgao_emissor = $request->orgao_emissor;
+        $pessoa->cpf = $request->cpf;
+        
         $request->validate([ 'data_nascimento' => 'nullable|date_format:d/m/Y',  ]);
         if ($request->filled('data_nascimento')) {
             $data_nascimento = Carbon::createFromFormat('d/m/Y', $request->data_nascimento)->format('Y-m-d');
@@ -31,22 +34,22 @@ class VoluntarioController extends Controller
             $data_nascimento = null; 
         }
         $pessoa->data_nascimento = $data_nascimento;
-        
-        $pessoa->nome_responsavel = $request->nome_responsavel;
-        $pessoa->parentesco_responsavel = $request->parentesco_responsavel;
-        */
-        $pessoa->nome = $request->nome;
+        $pessoa->nacionalidade = $request->nacionalidade;
+        $pessoa->estado_civil = $request->estado_civil;
         $pessoa->save();
 
         $contato = new Contato();
         $contato->pessoa_id =   $pessoa->id;
+        $contato->endereco  =   $request->endereco;
         $contato->telefone  =   $request->fone;
         $contato->email  =   $request->email;
         $contato->save();
 
         $Voluntario = new Voluntario;
         $Voluntario->pessoa_id = $pessoa->id;
-        $Voluntario->data_reserva = Carbon::now();
+        $Voluntario->profissao = $request->profissao;
+        $Voluntario->data_inicio = Carbon::now();
+        $Voluntario->carga_horaria = $request->carga_horaria;
         $Voluntario->save();
 
         return redirect('/voluntarios/dashboard')->with("msg","Voluntario criado com sucesso");

@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('voluntarios', function (Blueprint $table) {
             $table->id();
-            $table->date('data_reserva');
+            $table->string('profissao')->nullable();;
+            $table->date('data_inicio')->nullable();;
+            $table->string('carga_horaria')->nullable();;
             $table->timestamps();
         });
     }

@@ -16,9 +16,12 @@ return new class extends Migration
         Schema::create('pessoas', function (Blueprint $table) {
 			$table->id();
             $table->string('nome');
+            $table->string('rg')->nullable();
+            $table->string('orgao_emissor')->nullable();;
             $table->string('cpf')->nullable();
             $table->string('identidade')->nullable();
             $table->date('data_nascimento')->nullable();
+            $table->string('nacionalidade')->nullable();
             $table->string('nome_mae')->nullable();
             $table->string('nome_pai')->nullable();
             $table->string('sexo')->nullable();

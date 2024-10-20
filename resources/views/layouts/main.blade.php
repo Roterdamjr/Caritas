@@ -32,7 +32,7 @@
                             <a class="nav-link active " id="home-link" href="/alunos/dashboard">Alunos</a>
                             <a class="nav-link active " href="/alunos/create">Adicionar Alunos</a>
                             <a class="nav-link active " href="/voluntarios/dashboard">Voluntarios</a>
-                            <a class="nav-link active " href="/voluntarios/choose">Adicionar Voluntarios</a>
+                            <a class="nav-link active " href="/voluntarios/create">Adicionar Voluntarios</a>
                         @endauth
                     </div>
 
