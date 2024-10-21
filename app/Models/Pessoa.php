@@ -9,7 +9,6 @@ class Pessoa extends Model
 {
     use HasFactory;
 
-    
     //indica que qualer campo pode ser atualizado
     protected $guarded = [];
     

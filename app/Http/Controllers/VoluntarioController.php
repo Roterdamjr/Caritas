@@ -65,32 +65,37 @@ class VoluntarioController extends Controller
 
      //***************** exibir *********************
     public function show($id){  
-        $Voluntario =Voluntario::findOrFail($id);
+        $voluntario =Voluntario::findOrFail($id);
         
-        $dataNascimento = $Voluntario->pessoa->data_nascimento  ? 
-            \Carbon\Carbon::parse($Voluntario->pessoa->data_nascimento)->format('d/m/Y')
+        $dataNascimento = $voluntario->pessoa->data_nascimento  ? 
+            \Carbon\Carbon::parse($voluntario->pessoa->data_nascimento)->format('d/m/Y')
+            : null;  
+
+        $dataInicio = $voluntario->data_inicio  ? 
+            \Carbon\Carbon::parse($voluntario->data_inicio)->format('d/m/Y')
             : null;  
 
         return view('voluntarios.show', [
-            'Voluntario' => $Voluntario,
-            'dataNascimento' => $dataNascimento
+            'voluntario' => $voluntario,
+            'data_nascimento' => $dataNascimento,
+            'data_inicio' => $dataInicio
         ]);
     }
 
     //*************** editar **************
     public function edit($id){ 
-        $Voluntario =Voluntario::findOrFail($id);
+        $voluntario =Voluntario::findOrFail($id);
 
-        $dataNascimento = $Voluntario->pessoa->data_nascimento  ? 
-            \Carbon\Carbon::parse($Voluntario->pessoa->data_nascimento)->format('d/m/Y')
+        $dataNascimento = $voluntario->pessoa->data_nascimento  ? 
+            \Carbon\Carbon::parse($voluntario->pessoa->data_nascimento)->format('d/m/Y')
             : null;  
 
-        $dataInicio = $Voluntario->data_inicio  ? 
-            \Carbon\Carbon::parse($Voluntario->data_inicio)->format('d/m/Y')
+        $dataInicio = $voluntario->data_inicio  ? 
+            \Carbon\Carbon::parse($voluntario->data_inicio)->format('d/m/Y')
             : null;  
 
         return view('voluntarios.edit', [
-                'voluntario'=>$Voluntario,
+                'voluntario'=>$voluntario,
                 'data_nascimento' => $dataNascimento,
                 'data_inicio' => $dataInicio
                  ]);
@@ -114,7 +119,9 @@ class VoluntarioController extends Controller
             'rg' =>                 $request->rg,
             'orgao_emissor' =>      $request->orgao_emissor,
             'cpf' =>                $request->cpf,
-            'data_nascimento' =>    $data_nascimento
+            'data_nascimento' =>    $data_nascimento,
+            'nacionalidade' =>      $request->nacionalidade,
+            'estado_civil' =>      $request->estado_civil
         ]);
    
         //------- contato ---------//

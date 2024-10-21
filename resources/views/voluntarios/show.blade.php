@@ -4,44 +4,75 @@
 
 @section('content')
 
-<form action="/candidatos/imprimir/{{$candidato->id}}" method="GET" enctype="multipart/form-data" class="form-cadastro">
+<form action="/voluntarios/imprimir/{{$voluntario->id}}" method="GET" enctype="multipart/form-data" class="form-cadastro">
 
-        <p class="event-city"> Nome:
-                <ion-icon name="location-outline"> </ion-icon>{{$candidato->pessoa->nome}}
-        </p>
-        
-        <p class="events-participants"> Telefone:
-            <ion-icon name="people-outline"></ion-icon>{{$candidato->pessoa->contato->telefone}} 
-        </p> 
-        
-        <p class="event-owner"> e-mail:
-            <ion-icon name="star-outline"></ion-icon>{{$candidato->pessoa->contato->email}} 
-        </p> 
+    <div class="container ml-1"> 
 
-        <p class="event-owner"> Data de Nascimento
-            <ion-icon name="star-outline"></ion-icon>{{$dataNascimento}} 
-        </p> 
+        <div class="form-group row ">
+            <label for="nome" class="col-sm-2 col-form-label">Nome</label>
+            <label for="nome" class="col-sm-6 col-form-label">{{$voluntario->pessoa->nome}}</label>
+        </div>
 
-        <p class="event-owner"> Responsável:
-            <ion-icon name="star-outline"></ion-icon>{{$candidato->pessoa->nome_responsavel}} 
-        </p> 
+        <div class="form-group row "> 
+            <label for="rg" class="col-sm-2 col-form-label">RG</label>
+            <label for="nome" class="col-sm-2 col-form-label">{{$voluntario->pessoa->rg}}</label>
 
-        <p class="event-owner"> Parentesco:
-            <ion-icon name="star-outline"></ion-icon>{{$candidato->pessoa->parentesco_responsavel}} 
-        </p> 
+            <label for="" class="col-sm-1 col-form-label "></label>
 
-        <p>Atividades: </p>
-        <ul id="item-list">
-            @if($candidato->atividades)
-                @foreach($candidato->atividades as $atividade)
-                    <li><ion-icon name="play-outline"></ion-icon> {{$atividade}} </li>
-                @endforeach
-            @else
-                <li>Sem atividades</li>
-            @endif
-        </ul>
-  
-    <input type="submit" class="btn btn-primary" value="Gerar PDF">
+            <label for="orgao_emissor" class="col-sm-2 col-form-label">Órgão Emissor</label>
+            <label for="nome" class="col-sm-2 col-form-label">{{$voluntario->pessoa->orgao_emissor}}</label>
+
+            <label for="cpf" class="col-sm-1 col-form-label">CPF</label>
+            <label for="nome" class="col-sm-2 col-form-label">{{$voluntario->pessoa->cpf}}</label>
+        </div>
+
+        <div class="form-group row "> 
+            <label for="data_nascimento" class="col-sm-2 col-form-label text-nowrap">Data de Nascimento</label>
+            <label for="data_nascimento" class="col-sm-2 col-form-label">{{$data_nascimento}}</label>
+            
+            <label for="" class="col-sm-1 col-form-label "></label>
+            
+            <label for="nacionalidade" class="col-sm-2 col-form-label">Nacionalidade</label>
+            <label for="nacionalidade" class="col-sm-2 col-form-label">{{$data_nascimento}}</label>
+        </div>
+
+        <div class="form-group row "> 
+            <label for="estado_civil" class="col-sm-2 col-form-label ">Estado Civil</label>
+            <label for="estado_civil" class="col-sm-2 col-form-label">{{$voluntario->pessoa->estado_civil}}</label>
+
+            <label for="" class="col-sm-1 col-form-label "></label>
+
+            <label for="profissao" class="col-sm-2 col-form-label text-nowrap">Profissão</label>
+            <label for="profissao" class="col-sm-2 col-form-label">{{$voluntario->profissao}}</label>
+        </div>
+
+        <div class="form-group row "> 
+            <label for="endereco" class="col-sm-2 col-form-label text-nowrap">Endereço</label>
+            <label for="endereco" class="col-sm-5 col-form-label">{{$voluntario->pessoa->contato->endereco}}</label>
+        </div>
+
+        <div class="form-group row "> 
+            <label for="telefone" class="col-sm-2 col-form-label ">Telefone</label>
+            <label for="telefone" class="col-sm-2 col-form-label">{{$voluntario->pessoa->contato->telefone}}</label>
+
+            <label for="" class="col-sm-1 col-form-label "></label>
+
+            <label for="email" class="col-sm-2 col-form-label text-nowrap">E-mail</label>
+            <label for="email" class="col-sm-3 col-form-label">{{$voluntario->pessoa->contato->email}}</label>
+        </div>
+
+        <div class="form-group row">
+            <label for="carga_horaria" class="col-sm-2 col-form-label text-nowrap">Carga horaria</label>
+            <label for="carga_horaria" class="col-sm-2 col-form-label">{{$voluntario->carga_horaria}}</label>
+
+            <label for="" class="col-sm-1 col-form-label "></label>
+
+            <label for="data_inicio" class="col-sm-2 col-form-label text-nowrap">Data de Início</label>
+            <label for="carga_horaria" class="col-sm-2 col-form-label">{{$data_inicio}}</label>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Editar">
+    </div> <!-- Fim do container com a margem -->   
 
 </form>
 @endsection

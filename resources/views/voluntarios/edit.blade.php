@@ -10,12 +10,11 @@
         @csrf 
         @method('PUT')
 
-            <div class="container ml-5"> 
+            <div class="container ml-1"> 
 
-            <div class="form-group row"> 
-
-                <label for="nome" class="col-sm-2 col-form-label">Nome</label>
-                    <div class="col-sm-10">
+                <div class="form-group row ">
+                    <label for="nome" class="col-sm-2 col-form-label">Nome</label>
+                    <div class="col-sm-6">
                         <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome do voluntario" 
                         value="{{$voluntario->pessoa->nome}}">
                     </div>
