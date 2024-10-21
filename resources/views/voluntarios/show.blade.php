@@ -71,7 +71,7 @@
             <label for="carga_horaria" class="col-sm-2 col-form-label">{{$data_inicio}}</label>
         </div>
 
-        <input type="submit" class="btn btn-primary" value="Editar">
+        <input type="submit" class="btn btn-primary" value="Gerar PDF">
     </div> <!-- Fim do container com a margem -->   
 
 </form>

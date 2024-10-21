@@ -19,6 +19,11 @@
         </div>
 
         <div class="form-group row"> 
+            <label for="nome_social" class="col-sm-2 col-form-label">Nome Social</label>
+            <label for="nome_social" class="col-sm-6 col-form-label">{{$aluno->pessoa->nome_social}}</label>
+        </div>
+
+        <div class="form-group row"> 
         <label for="nome" class="col-sm-2 col-form-label">Atividades:</label>
             <div class="form-group">
                 <ul id="item-list">
@@ -110,16 +115,13 @@
         </div>                
 
         <div class="form-group row "> 
-            <label for="acompanhamento" class="col-sm-2 col-form-label ">Acompanhamento:</label>
-            <label for="acompanhamento" class="col-sm-3 col-form-label ">{{$aluno->acompanhamento}}</label> 
-
             <label for="comunidade" class="col-sm-1 col-form-label ">Comunidade</label>
             <label for="comunidade" class="col-sm-2 col-form-label ">{{$aluno->comunidade}}</label>
         </div>
 
         <div class="form-group row "> 
-            <label for="necessidade_especial" class="col-sm-2 col-form-label ">Necessidade Especial:</label>
-            <label for="necessidade_especial" class="col-sm-2 col-form-label ">{{$aluno->necessidade_especial}}</label>
+            <label for="necessidade_especifica" class="col-sm-2 col-form-label ">Necessidade Específica:</label>
+            <label for="necessidade_especifica" class="col-sm-2 col-form-label ">{{$aluno->necessidade_especifica}}</label>
         </div>
 
         <div class="form-group row "> 

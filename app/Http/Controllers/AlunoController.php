@@ -22,9 +22,8 @@ class AlunoController extends Controller
         return view('alunos.choose', ['candidatos'=>$candidatos]);
     }
 
-    public function create($id){
-        $candidato =Candidato::findOrFail($id);
-        return view('alunos.create',['candidato'=>$candidato]);
+    public function create(){
+        return view('alunos.create');
     }
 
      //*********************** incluir **************
@@ -33,6 +32,7 @@ class AlunoController extends Controller
         //------- pessoa ---------//
         $pessoa = new Pessoa;
         $pessoa->nome                   = $request->nome;
+        $pessoa->nome_social            = $request->nome_social;
         $pessoa->nome_mae               = $request->nome_mae;
         $pessoa->nome_pai               = $request->nome_pai;
         $pessoa->nome_responsavel       = $request->nome_responsavel;
@@ -69,16 +69,10 @@ class AlunoController extends Controller
         $aluno->ano_escolar = $request->ano_escolar;
         $aluno->beneficio = $request->beneficio;
         $aluno->clinica = $request->clinica;
-        $aluno->acompanhamento = $request->acompanhamento;
-        $aluno->necessidade_especial = $request->necessidade;
+        $aluno->necessidade_especifica = $request->necessidade;
         $aluno->comunidade = $request->comunidade;
         $aluno->uniformes = $request->uniformes;
         $aluno->save();
-
-         //------- excluir candidato ---------//
-        $candidatoId = $request->candidato_id;
-        $candidato = Candidato::findOrFail($candidatoId);
-        $candidato->delete();
 
         return redirect('/alunos/dashboard')->with("msg","Aluno criado com sucesso");
         //return redirect('/alunos/dashboard')->with("msg","id". $candidatoId);
@@ -128,6 +122,7 @@ class AlunoController extends Controller
         $pessoa = $aluno->pessoa;
     
         $pessoa->nome                   = $request->nome;
+        $pessoa->nome_social            = $request->nome_social;
         $pessoa->nome_mae               = $request->nome_mae;
         $pessoa->nome_pai               = $request->nome_pai;
         $pessoa->nome_responsavel       = $request->nome_responsavel;
@@ -164,7 +159,7 @@ class AlunoController extends Controller
                 /*----  atualiza aluno ----*/
 
         $aluno->update(
-            $request->except(['nome', 'data_nascimento','nome_mae','nome_pai','nome_responsavel', 
+            $request->except(['nome', 'nome_social','data_nascimento','nome_mae','nome_pai','nome_responsavel', 
                             'parentesco_responsavel','telefone_responsavel', 'estado_civil','sexo','cor', 
                             'telefone','endereco','email'])
         ); // Atualiza tudo exceto os campos da pessoa
@@ -197,6 +192,7 @@ class AlunoController extends Controller
             : null;  
             
             $data = [   'nome'                  => $aluno->pessoa->nome,
+                        'nome_social'           => $aluno->pessoa->nome_social,
                         'atividades'            => $aluno->atividades,
                         'data_nascimento'       => $dataNascimento,
                         'telefone'              => $aluno->pessoa->contato->telefone,
@@ -216,9 +212,8 @@ class AlunoController extends Controller
                         'turno'                 => $aluno->turno,
                         'clinica'               => $aluno->clinica,
                         'beneficio'             => $aluno->beneficio,
-                        'acompanhamento'        => $aluno->acompanhamento,
                         'comunidade'             => $aluno->comunidade,
-                        'necessidade_especial'   => $aluno->necessidade_especial,
+                        'necessidade_especifica' => $aluno->necessidade_especifica,
                         'uniformes'             => $aluno->uniformes
                     ];
     

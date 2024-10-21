@@ -25,8 +25,7 @@ return new class extends Migration
             $table->string('beneficio')->nullable();
             $table->string('comunidade')->nullable();
             $table->string('clinica')->nullable();
-            $table->string('acompanhamento')->nullable();
-            $table->string('necessidade_especial')->nullable();
+            $table->string('necessidade_especifica')->nullable();
             $table->json('uniformes')->nullable();
             $table->timestamps();
         });

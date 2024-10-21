@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('pessoas', function (Blueprint $table) {
 			$table->id();
             $table->string('nome');
+            $table->string('nome_social')->nullable();
             $table->string('rg')->nullable();
             $table->string('orgao_emissor')->nullable();;
             $table->string('cpf')->nullable();

@@ -92,7 +92,7 @@ Route::get('/alunos/choose', [ AlunoController::class , 'choose' ])->middleware(
 Route::get('/alunos/dashboard', [ AlunoController::class , 'dashboard' ])->middleware('auth');
 
 //incluir
-Route::get('/alunos/create/{id}', [ AlunoController::class , 'create' ])->middleware('auth');
+Route::get('/alunos/create', [ AlunoController::class , 'create' ])->middleware('auth');
 Route::post('/alunos', [ AlunoController::class , 'store' ])->middleware('auth');
 
 //exibir um 

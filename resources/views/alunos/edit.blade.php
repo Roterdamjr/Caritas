@@ -40,6 +40,14 @@
 
                 </div>
 
+                <div class="form-group row"> 
+                    <label for="nome_social" class="col-sm-2 col-form-label">Nome Social</label>
+                    <div class="col-sm-5">
+                        <input type="text" id="nome_social" name="nome_social" class="form-control"  
+                        value="{{$aluno->pessoa->nome_social}}">
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <div class="form-group row">
                     @foreach ([ 'Arte que Ajuda', 'Ação de Caritas', 'Ballet', 'Biblioteca Com.', 'Canto Coral','Flauta Doce', 
@@ -49,8 +57,7 @@
                             <div class="form-check">
                                 <input type="checkbox" name="atividades[]" value="{{ $atividade }}" 
                                     class="form-check-input" 
-                                    @if(is_array($aluno->atividades) && in_array($atividade, $aluno->atividades)) checked @endif
-                                >
+                                    @if(is_array($aluno->atividades) && in_array($atividade, $aluno->atividades)) checked @endif>
                                 <label class="form-check-label">{{ $atividade }}</label>
                             </div>
                         </div>
@@ -203,11 +210,6 @@
                 </div>                
 
                 <div class="form-group row "> 
-                    <label for="acompanhamento" class="col-sm-2 col-form-label ">Acompanhamento</label>
-                    <div class="col-sm-3">
-                        <input type="text" id="acompanhamento" name="acompanhamento" class="form-control" placeholder="Aompanhamento especial" 
-                            value="{{$aluno->acompanhamento}}">
-                    </div> 
 
                     <label for="comunidade" class="col-sm-1 col-form-label ">Comunidade</label>
                     <div class="col-sm-1">
@@ -225,10 +227,10 @@
                 </div>
 
                 <div class="form-group row "> 
-                    <label for="necessidade_especial" class="col-sm-2 col-form-label ">Necessidade Especial</label>
+                    <label for="necessidade_especifica" class="col-sm-2 col-form-label ">Necessidade Especial</label>
                     <div class="col-sm-3">
-                        <input type="text" id="necessidade_especial" name="necessidade_especial" class="form-control" placeholder="Necessidade Especial" 
-                        value="{{$aluno->necessidade_especial}}">
+                        <input type="text" id="necessidade_especifica" name="necessidade_especifica" class="form-control" placeholder="Necessidade Específica" 
+                        value="{{$aluno->necessidade_especifica}}">
                     </div> 
                 </div>
 

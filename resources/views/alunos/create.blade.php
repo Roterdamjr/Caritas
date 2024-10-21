@@ -9,21 +9,17 @@
         <form action="/alunos" method="POST" enctype="multipart/form-data" class="form-cadastro">
         @csrf 
 
-            <!--enviar id do candidato para exluir no controller -->
-            <input type="hidden" name="candidato_id" value="{{ $candidato->id }}">
-
             <div class="container ml-5"> 
 
                 <div class="form-group row"> 
                     <label for="nome" class="col-sm-2 col-form-label">Nome</label>
                     <div class="col-sm-5">
-                        <input type="text" id="nome" name="nome" class="form-control"  
-                        value="{{ old('nome', $candidato->pessoa->nome)}}" required>
+                        <input type="text" id="nome" name="nome" class="form-control"  required>
                     </div>
 
-                    <label for="data_nascimento" class="col-sm-2 col-form-label ">Data Nascimento</label>
+                    <label for="data_nascimento" class="col-sm-2 col-form-label ">Data de Nascimento</label>
                     <div class="col-sm-2">
-                        <input type="text" id="data_nascimento" name="data_nascimento">
+                        <input type="text" id="data_nascimento" name="data_nascimento" class="form-control">
                         
                         @if($errors->has('data_nascimento'))
                             <span class="text-danger">
@@ -37,12 +33,30 @@
                             });
                         </script>
                     </div> 
-
                 </div>
 
-                <div class="form-group">
-                    <div class="form-group row"> 
-                        @foreach (['Arte que Ajuda', 'Ação de Caritas', 'Ballet', 'Biblioteca Com.', 'Canto Coral', 
+                <div class="form-group row"> 
+                    <label for="nome_social" class="col-sm-2 col-form-label">Nome Social</label>
+                    <div class="col-sm-5">
+                        <input type="text" id="nome_social" name="nome_social" class="form-control"  >
+                    </div>
+                </div>
+
+                <div class="form-group row ">
+                    <label for="dia_semanal" class="col-sm-2 col-form-label ">Dia</label>
+
+                    <div class="col-sm-2">
+                        <select id="dia_semanal" name="dia_semanal" class="form-control">
+                            @foreach (['Seg','Ter' ] 
+                                as $dia_semanal)
+                                <option value="{{ $dia_semanal }}">{{ $dia_semanal }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row "> 
+                    @foreach (['Arte que Ajuda', 'Ação de Caritas', 'Ballet', 'Biblioteca Com.', 'Canto Coral', 
                                 'Flauta Doce', 'Gestação Acolhida', 'Reforço Escolar', 'Sapateado', 'Teatro', 'Violino', 'Violão'] 
                                 as $atividade)
                                 <div class="col-md-2"> 
@@ -51,23 +65,21 @@
                                         <label class="form-check-label">{{ $atividade }}</label>
                                     </div>
                                 </div>
-                        @endforeach
-                    </div>
-                </div> 
-
+                    @endforeach
+                </div>
+                
+                
                 <div class="form-group row "> 
                     <label for="telefone" class="col-sm-2 col-form-label ">Telefone</label>
                     <div class="col-sm-2">
-                        <input type="text" id="telefone" name="telefone" class="form-control" 
-                        value="{{ old('nome', $candidato->pessoa->contato->telefone)}}">
+                        <input type="text" id="telefone" name="telefone" class="form-control" >
                     </div>
 
                     <label for="" class="col-sm-4 col-form-label "></label>
 
                     <label for="email" class="col-sm-1 col-form-label ">Email</label>
                     <div class="col-sm-3">
-                        <input type="text" id="email" name="email" class="form-control" 
-                        value="{{ old('email', $candidato->pessoa->contato->email)}}">
+                        <input type="text" id="email" name="email" class="form-control" >
                     </div>
                 </div>
 
@@ -95,14 +107,12 @@
                 <div class="form-group row "> 
                     <label for="nome_responsavel" class="col-sm-2 col-form-label ">Outro responsável</label>
                     <div class="col-sm-3">
-                        <input type="text" id="nome_responsavel" name="nome_responsavel" class="form-control" 
-                        value="{{ old('nome', $candidato->pessoa->nome_responsavel)}}" >
+                        <input type="text" id="nome_responsavel" name="nome_responsavel" class="form-control" >
                     </div>
 
                     <label for="parentesco_responsavel" class="col-sm-1 col-form-label ">Parentesco</label>
                     <div class="col-sm-2">
-                        <input type="text" id="parentesco_responsavel" name="parentesco_responsavel" class="form-control" 
-                        value="{{ old('nome', $candidato->pessoa->parentesco_responsavel)}}" >
+                        <input type="text" id="parentesco_responsavel" name="parentesco_responsavel" class="form-control" >
                     </div>
 
                     <label for="telefone_responsavel" class="col-sm-1 col-form-label ">Telefone</label>
@@ -127,7 +137,7 @@
 
                     <label for="sexo" class="col-sm-1 col-form-label ">Sexo</label>
                     <div class="col-sm-1">
-                        <select id="sexos" name="sexo">
+                        <select id="sexos" name="sexo" class="form-control">
                             @foreach ([  'M',  'F'] 
                                     as $sexo)
                                 <option value="{{ $sexo }}">{{ $sexo }}</option>
@@ -147,7 +157,7 @@
                     <label for="escolaridade" class="col-sm-2 col-form-label ">Escolaridade</label>
 
                     <div class="col-sm-1">
-                        <select id="escolaridades" name="escolaridade">
+                        <select id="escolaridades" name="escolaridade" class="form-control">
                             @foreach ([  'Fund. I completo',  'Fund. I incompleto',  'Fund. II completo',
                                         'Fund. II incompleto','Médio completo',
                                         'Médio incompleto','Superior completo','Superior incompleto'] 
@@ -185,14 +195,9 @@
                 </div>                
 
                 <div class="form-group row "> 
-                    <label for="acompanhamento" class="col-sm-2 col-form-label ">Acompanhamento</label>
-                    <div class="col-sm-3">
-                        <input type="text" id="acompanhamento" name="acompanhamento" class="form-control" placeholder="Aompanhamento especial" >
-                    </div> 
-
                     <label for="comunidade" class="col-sm-1 col-form-label ">Comunidade</label>
                     <div class="col-sm-1">
-                        <select id="comunidades" name="comunidade">
+                        <select id="comunidades" name="comunidade" class="form-control">
                             @foreach ([ '', 'Céu Azul','Rato Molhado','Dois de Maio','São João','Matriz'] 
                                     as $comunidade)
                                 <option value="{{ $comunidade }}">{{ $comunidade }}</option>
@@ -202,7 +207,7 @@
                 </div>
 
                 <div class="form-group row "> 
-                    <label for="necessidade" class="col-sm-2 col-form-label ">Necessidade Especial</label>
+                    <label for="necessidade" class="col-sm-2 col-form-label ">Necessidade Específica</label>
                     <div class="col-sm-3">
                         <input type="text" id="necessidade" name="necessidade" class="form-control" placeholder="Necessidade Especial" >
                     </div> 
