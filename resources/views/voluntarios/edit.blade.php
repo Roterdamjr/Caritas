@@ -13,7 +13,8 @@
             <div class="container ml-5"> 
 
             <div class="form-group row"> 
-                    <label for="nome" class="col-sm-2 col-form-label">Nome</label>
+
+                <label for="nome" class="col-sm-2 col-form-label">Nome</label>
                     <div class="col-sm-10">
                         <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome do voluntario" 
                         value="{{$voluntario->pessoa->nome}}">
@@ -24,7 +25,7 @@
                     <label for="rg" class="col-sm-2 col-form-label">RG</label>
                     <div class="col-sm-2">
                         <input type="text" id="rg" name="rg" class="form-control" placeholder="RG do voluntario" 
-                        value="{{$voluntario->pessoa->nome}}">
+                        value="{{$voluntario->pessoa->rg}}">
                     </div>
 
                     <label for="" class="col-sm-1 col-form-label "></label>
@@ -47,7 +48,7 @@
                     <label for="data_nascimento" class="col-sm-2 col-form-label text-nowrap">Data de Nascimento</label>
                     <div class="col-sm-2">
                         <input type="text" id="data_nascimento" name="data_nascimento" class="form-control"
-                        value="{{$voluntario->pessoa->data_nascimento}}">
+                        value="{{$data_nascimento}}">
 
                         @if($errors->has('data_nascimento'))
                             <span class="text-danger">
@@ -91,7 +92,7 @@
                     <label for="endereco" class="col-sm-2 col-form-label text-nowrap">Endereço</label>
                     <div class="col-sm-5">
                         <input type="text" id="endereco" name="endereco" class="form-control" placeholder="Logradouro, Cidade, Estado, CEP"
-                        value="{{$voluntario->nome}}" >
+                        value="{{$voluntario->pessoa->contato->endereco}}" >
                     </div>
                 </div>
 
@@ -123,7 +124,7 @@
                     <label for="data_inicio" class="col-sm-2 col-form-label text-nowrap">Data de Início</label>
                     <div class="col-sm-2">
                         <input type="text" id="data_inicio" name="data_inicio" class="form-control"
-                        value="{{$voluntario->data_inicio}}">
+                        value="{{$data_inicio}}">
 
                         @if($errors->has('data_inicio'))
                             <span class="text-danger">

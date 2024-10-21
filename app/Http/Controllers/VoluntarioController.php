@@ -20,6 +20,7 @@ class VoluntarioController extends Controller
         return view('voluntarios.create');
     }
 
+     //*********************** incluir **************
     public function store(Request $request){
         $pessoa = new Pessoa;
         $pessoa->nome = $request->nome;
@@ -41,20 +42,28 @@ class VoluntarioController extends Controller
         $contato = new Contato();
         $contato->pessoa_id =   $pessoa->id;
         $contato->endereco  =   $request->endereco;
-        $contato->telefone  =   $request->fone;
+        $contato->telefone  =   $request->telefone;
         $contato->email  =   $request->email;
         $contato->save();
 
         $Voluntario = new Voluntario;
         $Voluntario->pessoa_id = $pessoa->id;
         $Voluntario->profissao = $request->profissao;
-        $Voluntario->data_inicio = Carbon::now();
+
+        $request->validate([ 'data_inicio' => 'nullable|date_format:d/m/Y',  ]);
+        if ($request->filled('data_inicio')) {
+            $data_inicio = Carbon::createFromFormat('d/m/Y', $request->data_inicio)->format('Y-m-d');
+        } else {
+            $data_inicio = null; 
+        }     
+        $Voluntario->data_inicio = $data_inicio;
         $Voluntario->carga_horaria = $request->carga_horaria;
         $Voluntario->save();
 
         return redirect('/voluntarios/dashboard')->with("msg","Voluntario criado com sucesso");
     }
 
+     //***************** exibir *********************
     public function show($id){  
         $Voluntario =Voluntario::findOrFail($id);
         
@@ -68,7 +77,7 @@ class VoluntarioController extends Controller
         ]);
     }
 
-    //editar
+    //*************** editar **************
     public function edit($id){ 
         $Voluntario =Voluntario::findOrFail($id);
 
@@ -76,42 +85,59 @@ class VoluntarioController extends Controller
             \Carbon\Carbon::parse($Voluntario->pessoa->data_nascimento)->format('d/m/Y')
             : null;  
 
+        $dataInicio = $Voluntario->data_inicio  ? 
+            \Carbon\Carbon::parse($Voluntario->data_inicio)->format('d/m/Y')
+            : null;  
+
         return view('voluntarios.edit', [
                 'voluntario'=>$Voluntario,
-                'data_nascimento' => $dataNascimento
+                'data_nascimento' => $dataNascimento,
+                'data_inicio' => $dataInicio
                  ]);
     }
     
+    //**************** alterar *****************
     public function update(Request $request){ 
         $Voluntario = Voluntario::findOrFail($request->id);
 
         $request->validate([  'data_nascimento' => 'nullable|date_format:d/m/Y',   ]);
-
         if ($request->filled('data_nascimento')) {
             $data_nascimento = Carbon::createFromFormat('d/m/Y', $request->data_nascimento)->format('Y-m-d');
         } else {
             $data_nascimento = null; 
         }
 
+        //------- pessoa ---------//
         $pessoa = $Voluntario->pessoa;
         $pessoa->update([
-            'nome' => $request->nome,
-            'data_nascimento' => $data_nascimento,
-            'nome_responsavel' => $request->nome_responsavel,
-            'parentesco_responsavel' => $request->parentesco_responsavel,
+            'nome' =>               $request->nome,
+            'rg' =>                 $request->rg,
+            'orgao_emissor' =>      $request->orgao_emissor,
+            'cpf' =>                $request->cpf,
+            'data_nascimento' =>    $data_nascimento
         ]);
    
+        //------- contato ---------//
         $contato = $pessoa->contato;
         $contato->update([
-            'telefone' => $request->fone,
-            'email' => $request->email
+            'telefone' =>   $request->telefone,
+            'email' =>      $request->email,
+            'endereco' =>   $request->endereco
         ]);
 
-        
-        $Voluntario->update(
-            $request->except(['nome', 'data_nascimento','nome_responsavel', 'parentesco_responsavel','email', 'fone'])
-        ); // Atualiza tudo exceto os campos da pessoa
-        $Voluntario->update(['atividades' => $request->atividades]);
+        //------- voluntario ---------//
+        $request->validate([ 'data_inicio' => 'nullable|date_format:d/m/Y',  ]);
+        if ($request->filled('data_inicio')) {
+            $data_inicio = Carbon::createFromFormat('d/m/Y', $request->data_inicio)->format('Y-m-d');
+        } else {
+            $data_inicio = null; 
+        }     
+
+        $Voluntario->update([
+            'data_inicio' => $data_inicio,
+            'profissao' => $request->profissao,
+            'carga_horaria' => $request->carga_horaria
+        ]);
 
         return redirect('/voluntarios/dashboard')->with("msg","Voluntario alterado com sucesso");
     }

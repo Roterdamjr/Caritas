@@ -9,11 +9,20 @@ class Pessoa extends Model
 {
     use HasFactory;
 
+    
+    //indica que qualer campo pode ser atualizado
+    protected $guarded = [];
+    
     protected $fillable = [
         'nome', 
         'data_nascimento',
         'nome_responsavel',
-        'parentesco_responsavel'
+        'parentesco_responsavel',
+        'rg',
+        'orgao_emissor',
+        'cpf',
+        'nacionalidade',
+        'estado_civil'
     ];
 
     public function voluntario()
