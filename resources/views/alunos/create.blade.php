@@ -29,6 +29,8 @@ function toggleInputNecessidade() {
                         <input type="text" id="nome" name="nome" class="form-control"  required>
                     </div>
 
+                    <label for="" class="col-sm-2 col-form-label "></label>
+
                     <label for="data_nascimento" class="col-sm-2 col-form-label ">Data de Nascimento</label>
                     <div class="col-sm-2">
                         <input type="text" id="data_nascimento" name="data_nascimento" class="form-control">
@@ -159,14 +161,14 @@ function toggleInputNecessidade() {
                 <div class="form-group row "> 
                     <label for="telefone" class="col-sm-2 col-form-label ">Telefone</label>
                     <div class="col-sm-2">
-                        <input type="text" id="telefone" name="telefone" class="form-control" >
+                        <input type="text" id="telefone" name="telefone" class="form-control"  placeholder="Telefone do aluno">
                     </div>
 
                     <label for="" class="col-sm-4 col-form-label "></label>
 
                     <label for="email" class="col-sm-1 col-form-label ">Email</label>
                     <div class="col-sm-3">
-                        <input type="text" id="email" name="email" class="form-control" >
+                        <input type="text" id="email" name="email" class="form-control"  placeholder="e-mail do aluno" >
                     </div>
 
                 </div>
@@ -186,13 +188,13 @@ function toggleInputNecessidade() {
                 <div class="form-group row "> 
                     <label for="nome_responsavel" class="col-sm-2 col-form-label ">Outro responsável</label>
                     <div class="col-sm-3">
-                        <input type="text" id="nome_responsavel" name="nome_responsavel" class="form-control" >
+                        <input type="text" id="nome_responsavel" name="nome_responsavel" class="form-control"  placeholder="Nome do responsável">
                     </div>
 
 
                     <label for="parentesco_responsavel" class="col-sm-1 col-form-label ">Parentesco</label>
                     <div class="col-sm-2">
-                        <input type="text" id="parentesco_responsavel" name="parentesco_responsavel" class="form-control" >
+                        <input type="text" id="parentesco_responsavel" name="parentesco_responsavel" class="form-control" placeholder="Parentesco do responsável">
                     </div>
 
                     <label for="telefone_responsavel" class="col-sm-1 col-form-label ">Telefone</label>
@@ -222,7 +224,7 @@ function toggleInputNecessidade() {
                             @endforeach
                         </select>
                     </div>
-                    
+
                     <label for="" class="col-sm-1 col-form-label "></label>
 
                     <label for="ano_escolar" class="col-sm-1 col-form-label ">Ano</label>

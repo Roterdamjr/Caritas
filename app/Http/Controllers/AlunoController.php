@@ -62,14 +62,17 @@ class AlunoController extends Controller
         //------- aluno ---------//
         $aluno = new Aluno;
         $aluno->pessoa_id = $pessoa->id;
-        $aluno->atividades = $request->atividades;
+        $aluno->atividade = $request->atividade;
+        $aluno->atividade_dia_semana = $request->atividade_dia_semana;
+        $aluno->atividade_turno = $request->atividade_turno;
+        $aluno->atividade_horario = $request->atividade_horario_ini . ' - ' . $request->atividade_horario_fim;
         $aluno->profissao = $request->profissao;
         $aluno->escolaridade = $request->escolaridade;
         $aluno->turno = $request->turno;
         $aluno->ano_escolar = $request->ano_escolar;
         $aluno->beneficio = $request->beneficio;
         $aluno->clinica = $request->clinica;
-        $aluno->necessidade_especifica = $request->necessidade;
+        $aluno->necessidade = $request->necessidade;
         $aluno->comunidade = $request->comunidade;
         $aluno->uniformes = $request->uniformes;
         $aluno->save();
@@ -213,7 +216,7 @@ class AlunoController extends Controller
                         'clinica'               => $aluno->clinica,
                         'beneficio'             => $aluno->beneficio,
                         'comunidade'             => $aluno->comunidade,
-                        'necessidade_especifica' => $aluno->necessidade_especifica,
+                        'necessidade'           => $aluno->necessidade,
                         'uniformes'             => $aluno->uniformes
                     ];
     

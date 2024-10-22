@@ -11,7 +11,14 @@ class Aluno extends Model
 
     protected $guarded = [];
 
-    protected $casts = ['atividades'=>'array','uniformes'=>'array'];
+    protected $fillable = [
+        'atividade', 
+        'atividade_dia_semana',
+        'atividade_turno',
+        'atividade_horario'
+    ];
+
+    protected $casts = ['uniformes'=>'array'];
 
     public function pessoa()
     {
