@@ -252,7 +252,8 @@ function toggleInputNecessidade() {
 
                     <div class="col-sm-3 d-flex align-items-center">
                         <div class="form-check">
-                            <input type="checkbox" id="enableBeneficio" class="form-check-input" onclick="toggleInputBeneficio()" style="transform: translateY(1px);">
+                            <input type="checkbox" id="enableBeneficio" class="form-check-input" 
+                            onclick="toggleInputBeneficio()" style="transform: translateY(1px);">
                         </div>
                         <input type="text" id="beneficio" name="beneficio" class="form-control ml-2" 
                             placeholder="Benefício do governo" disabled>
@@ -264,10 +265,11 @@ function toggleInputNecessidade() {
 
                     <div class="col-sm-3 d-flex align-items-center">
                         <div class="form-check">
-                            <input type="checkbox" id="enableNecessidade" class="form-check-input" onclick="toggleInputNecessidade()">
+                            <input type="checkbox" id="enableNecessidade" class="form-check-input" 
+                            onclick="toggleInputNecessidade()">
                         </div>
 
-                        <input type="text" id="necessidade" name="beneficio" class="form-control" 
+                        <input type="text" id="necessidade" name="necessidade" class="form-control" 
                             placeholder="Necessidade específica" disabled>
                     </div>
                 </div> 

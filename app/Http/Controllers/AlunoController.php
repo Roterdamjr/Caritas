@@ -57,6 +57,7 @@ class AlunoController extends Controller
         $contato->pessoa_id =   $pessoa->id;
         $contato->telefone  =   $request->telefone;
         $contato->endereco  =   $request->endereco;
+        $contato->email  =   $request->email;
         $contato->save();
         
         //------- aluno ---------//
@@ -103,9 +104,14 @@ class AlunoController extends Controller
             \Carbon\Carbon::parse($aluno->pessoa->data_nascimento)->format('d/m/Y')
             : null;  
 
+        list($atividade_horario_ini, $atividade_horario_fim) = explode('-', $aluno->atividade_horario);
+
+
         return view('alunos.edit', [
                 'aluno'=>$aluno,
-                'data_nascimento' => $dataNascimento
+                'data_nascimento' => $dataNascimento,
+                'atividade_horario_ini' => $atividade_horario_ini,
+                'atividade_horario_fim' => $atividade_horario_fim
                  ]);
     }
 
@@ -164,10 +170,11 @@ class AlunoController extends Controller
         $aluno->update(
             $request->except(['nome', 'nome_social','data_nascimento','nome_mae','nome_pai','nome_responsavel', 
                             'parentesco_responsavel','telefone_responsavel', 'estado_civil','sexo','cor', 
-                            'telefone','endereco','email'])
+                            'telefone','endereco','email','atividade_horario_ini','atividade_horario_fim'])
         ); // Atualiza tudo exceto os campos da pessoa
 
-        $aluno->update(['atividades' => $request->atividades]);
+
+        $aluno->update(['atividade_horario' => $request->atividade_horario_ini . ' - ' . $request->atividade_horario_fim]);
         $aluno->update(['uniformes' => $request->uniformes]);
 
         return redirect('/alunos/dashboard')->with("msg", "Aluno alterado com sucesso"  );

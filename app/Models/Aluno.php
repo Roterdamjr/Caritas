@@ -10,14 +10,18 @@ class Aluno extends Model
     use HasFactory;
 
     protected $guarded = [];
-
+/*
     protected $fillable = [
         'atividade', 
         'atividade_dia_semana',
         'atividade_turno',
-        'atividade_horario'
-    ];
+        'atividade_horario',
+        'comunidade',
+        'profissao',
+        'escolaridade',
 
+    ];
+*/
     protected $casts = ['uniformes'=>'array'];
 
     public function pessoa()

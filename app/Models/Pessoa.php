@@ -17,11 +17,13 @@ class Pessoa extends Model
         'data_nascimento',
         'nome_responsavel',
         'parentesco_responsavel',
+        'telefone_repsonsavel',
         'rg',
         'orgao_emissor',
         'cpf',
         'nacionalidade',
-        'estado_civil'
+        'estado_civil',
+        'sexo'
     ];
 
     public function voluntario()
