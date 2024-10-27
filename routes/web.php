@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VoluntarioController;
-use App\Http\Controllers\CandidatoController;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\PDFController;
 
@@ -43,6 +42,10 @@ Route::post('/register', [ AuthController::class , 'registerPost' ]) ;
 //exibir varios 
 Route::get('/voluntarios/dashboard', [ VoluntarioController::class , 'dashboard' ])->middleware('auth');
 
+//teste PDF
+Route::get('/voluntarios/adesao', [ VoluntarioController::class , 'adesao' ])->middleware('auth');
+
+
 //incluir
 Route::get('/voluntarios/create', [ VoluntarioController::class , 'create' ])->middleware('auth');
 Route::post('/voluntarios', [ VoluntarioController::class , 'store' ])->middleware('auth');
@@ -62,28 +65,8 @@ Route::delete('/voluntarios/{id}', [ VoluntarioController::class , 'destroy' ])-
 //imprimir
 Route::get('/voluntarios/imprimir/{id}', [VoluntarioController::class, 'gerarPDF']);
 
-// ********************************** CANDIDATOS ********************************
-//exibir varios 
-Route::get('/candidatos/dashboard', [ CandidatoController::class , 'dashboard' ])->middleware('auth');
 
-//incluir
-Route::get('/candidatos/create', [ CandidatoController::class , 'create' ])->middleware('auth');
-Route::post('/candidatos', [ CandidatoController::class , 'store' ])->middleware('auth');
-
-
-//exibir um 
-Route::get('/candidatos/{id}', [ CandidatoController::class , 'show' ])->middleware('auth');
-
-//alterar
-Route::get('/candidatos/edit/{id}', [ CandidatoController::class , 'edit' ])->middleware('auth');
-Route::put('/candidatos/update/{id}', [ CandidatoController::class , 'update' ])->middleware('auth');
-
-
-//deletar
-Route::delete('/candidatos/{id}', [ CandidatoController::class , 'destroy' ])->middleware('auth');
-
-//imprimir
-Route::get('/candidatos/imprimir/{id}', [CandidatoController::class, 'gerarPDF']);
+ 
 
 // ********************************** ALUNOS ********************************
 Route::get('/alunos/choose', [ AlunoController::class , 'choose' ])->middleware('auth');

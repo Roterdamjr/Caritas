@@ -1,8 +1,9 @@
 @extends('layouts.main')
 
-@section('title', 'Candidato')
+@section('title', 'Voluntário')
 
 @section('content')
+
 
 <form action="/voluntarios/imprimir/{{$voluntario->id}}" method="GET" enctype="multipart/form-data" class="form-cadastro">
 

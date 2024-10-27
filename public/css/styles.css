@@ -137,6 +137,10 @@ body {
     display: none;
   }
 
+  .justificado {
+    text-align: justify;
+}
+
 
 
 

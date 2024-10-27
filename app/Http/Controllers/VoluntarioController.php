@@ -14,7 +14,36 @@ class VoluntarioController extends Controller
     public function dashboard(){  
         $voluntarios = Voluntario::with('contato')->get();
         return view('voluntarios.dashboard' ,['voluntarios'=>$voluntarios] );
+
     }
+
+    public function adesao()
+    {                
+        $Voluntario =Voluntario::findOrFail(1);
+
+        $dataNascimento = $Voluntario->pessoa->data_nascimento  ? 
+        \Carbon\Carbon::parse($Voluntario->pessoa->data_nascimento)->format('d/m/Y')
+        : null;  
+        $dataInicio = $Voluntario->data_inicio  ? 
+        \Carbon\Carbon::parse($Voluntario->data_inicio)->format('d/m/Y')
+        : null;  
+        
+        $data = [   'nome' =>           $Voluntario->pessoa->nome,
+                    'rg' =>             $Voluntario->pessoa->rg,
+                    'cpf' =>            $Voluntario->pessoa->cpf,
+                    'data_nascimento' =>$dataNascimento,
+                    'nacionalidade' =>  $Voluntario->pessoa->nacionalidade,
+                    'estado_civil' =>   $Voluntario->pessoa->estado_civil,
+                    'profissao' =>      $Voluntario->profissao,
+                    'endereco' =>       $Voluntario->pessoa->contato->endereco,
+                    'telefone' =>       $Voluntario->pessoa->contato->telefone,
+                    'email' =>          $Voluntario->pessoa->contato->email,
+                'data_inicio' =>    $dataInicio];
+
+        return view('voluntarios.adesao',$data);
+    }
+
+
 
     public function create(){
         return view('voluntarios.create');
@@ -169,17 +198,32 @@ class VoluntarioController extends Controller
         $dataNascimento = $Voluntario->pessoa->data_nascimento  ? 
         \Carbon\Carbon::parse($Voluntario->pessoa->data_nascimento)->format('d/m/Y')
         : null;  
-        
-        $data = [   'nome' => $Voluntario->pessoa->nome,
-                    'telefone' => $Voluntario->pessoa->contato->telefone,
-                    'email' => $Voluntario->pessoa->contato->email,
-                    'data_nascimento' => $dataNascimento,
-                    'nome_responsavel' => $Voluntario->pessoa->nome_responsavel,
-                    'parentesco_responsavel' => $Voluntario->pessoa->parentesco_responsavel,
-                    'atividades' => $Voluntario->atividades];
 
-        $pdf = PDF::loadView('voluntarios/pdf', $data);
+        $dataInicio = $Voluntario->data_inicio  ? 
+        \Carbon\Carbon::parse($Voluntario->data_inicio)->format('d/m/Y')
+        : null;  
+        
+        $data = [   'nome' =>           $Voluntario->pessoa->nome,
+                    'rg' =>             $Voluntario->pessoa->rg,
+                    'cpf' =>            $Voluntario->pessoa->cpf,
+                    'data_nascimento' =>$dataNascimento,
+                    'nacionalidade' =>  $Voluntario->pessoa->nacionalidade,
+                    'estado_civil' =>   $Voluntario->pessoa->estado_civil,
+                    'profissao' =>      $Voluntario->profissao,
+                    'endereco' =>       $Voluntario->pessoa->contato->endereco,
+                    'telefone' =>       $Voluntario->pessoa->contato->telefone,
+                    'email' =>          $Voluntario->pessoa->contato->email,
+                    'data_inicio' =>    $dataInicio
+                ];
+
+        $pdf = PDF::loadView('voluntarios/adesao', $data);
 
         return $pdf->download('meu_arquivo.pdf');
+       
     }
+
+    
+
+
+
 }

@@ -47,11 +47,6 @@
             <div class="dados">
                 <label>Atividades:</label> 
             </div>
-            <ul>
-                @foreach($atividades as $atividade)
-                    <li>{{ $atividade }}</li>
-                @endforeach
-            </ul>
 
             <div class="dados">
                 <label>Mãe:</label> <span>{{ $nome_mae }}</span>
@@ -101,9 +96,8 @@
             <div class="dados">
                 <label>Clínica:</label> <span>{{ $clinica }}</span>
             </div>
-            <div class="dados">
-                <label>Acompanhamento:</label> <span>{{ $acompanhamento }}</span>
-            </div>
+
+            
             <div class="dados">
                 <label>Comunidade:</label> <span>{{ $comunidade }}</span>
             </div>
