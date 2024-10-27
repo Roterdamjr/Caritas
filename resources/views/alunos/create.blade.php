@@ -209,7 +209,16 @@ function toggleInputNecessidade() {
                     <div class="col-sm-3">
                         <input type="text" id="profissao" name="profissao" class="form-control" placeholder="Profissão do aluno" >
                     </div>  
+
+                    <label for="" class="col-sm-1 col-form-label "></label>
+
+                    <label for="instituicao" class="col-sm-2 col-form-label ">Instituição de ensino</label>
+                    <div class="col-sm-2">
+                        <input type="text" id="instituicao" name="instituicao" class="form-control" placeholder="Instituição de ensico" >
+                    </div> 
                 </div>
+
+
 
                 <div class="form-group row "> 
                     <label for="escolaridade" class="col-sm-2 col-form-label ">Escolaridade</label>
@@ -227,7 +236,7 @@ function toggleInputNecessidade() {
 
                     <label for="" class="col-sm-1 col-form-label "></label>
 
-                    <label for="ano_escolar" class="col-sm-1 col-form-label ">Ano</label>
+                    <label for="ano_escolar" class="col-sm-2 col-form-label ">Ano/Período</label>
                     <div class="col-sm-1">
                         <input type="text" id="ano_escolar" name="ano_escolar" class="form-control" placeholder="Ano de escolaridade" >
                     </div> 

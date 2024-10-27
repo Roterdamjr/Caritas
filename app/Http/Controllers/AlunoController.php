@@ -17,6 +17,48 @@ class AlunoController extends Controller
         return view('alunos.dashboard' ,['alunos'=>$alunos] );
     }
 
+    public function ficha()
+    {
+
+        $aluno =Aluno::findOrFail(1);
+
+        $dataNascimento = $aluno->pessoa->data_nascimento  ? 
+        \Carbon\Carbon::parse($aluno->pessoa->data_nascimento)->format('d/m/Y')
+        : null;  
+
+
+        $data = [   'nome'                  => $aluno->pessoa->nome,
+                    'nome_social'           => $aluno->pessoa->nome_social,
+                    'atividade'             => $aluno->atividade,
+                    'atividade_dia_semana'  => $aluno->atividade_dia_semana,
+                    'atividade_turno'       => $aluno->atividade_turno,
+                    'atividade_horario'     => $aluno->atividade_horario,
+                    'data_nascimento'       => $dataNascimento,
+                    'idade'                 => Carbon::parse($dataNascimento)->age,
+                    'estado_civil'          => $aluno->pessoa->estado_civil,
+                    'sexo'                  => $aluno->pessoa->sexo,
+                    'cor'                   => $aluno->pessoa->cor,
+                    'endereco'              => $aluno->pessoa->contato->endereco,
+                    'comunidade'            => $aluno->comunidade,
+                    'telefone'              => $aluno->pessoa->contato->telefone,
+                    'email'                 => $aluno->pessoa->contato->email,             
+                    'instituicao'           => $aluno->instituicao,
+                    'nome_mae'              => $aluno->pessoa->nome_mae,
+                    'nome_pai'              => $aluno->pessoa->nome_pai,
+                    'nome_responsavel'      => $aluno->pessoa->nome_responsavel,
+                    'parentesco_responsavel' => $aluno->pessoa->parentesco_responsavel,
+                    'telefone_responsavel'  => $aluno->pessoa->telefone_responsavel,
+                    'escolaridade'          => $aluno->escolaridade,
+                    'ano_escolar'           => $aluno->ano_escolar,          
+                    'turno'                 => $aluno->turno,
+                    'clinica'               => $aluno->clinica,
+                    'beneficio'             => $aluno->beneficio,
+                    'necessidade'            => $aluno->necessidade,
+                    'uniformes'             => $aluno->uniformes
+                ];
+        return view('alunos.ficha',$data);
+    }
+
     public function choose(){
         $candidatos = Candidato::with('contato')->get();
         return view('alunos.choose', ['candidatos'=>$candidatos]);
@@ -68,6 +110,7 @@ class AlunoController extends Controller
         $aluno->atividade_turno = $request->atividade_turno;
         $aluno->atividade_horario = $request->atividade_horario_ini . ' - ' . $request->atividade_horario_fim;
         $aluno->profissao = $request->profissao;
+        $aluno->instituicao = $request->instituicao;
         $aluno->escolaridade = $request->escolaridade;
         $aluno->turno = $request->turno;
         $aluno->ano_escolar = $request->ano_escolar;
@@ -203,31 +246,35 @@ class AlunoController extends Controller
             
             $data = [   'nome'                  => $aluno->pessoa->nome,
                         'nome_social'           => $aluno->pessoa->nome_social,
-                        'atividades'            => $aluno->atividades,
+                        'atividade'             => $aluno->atividade,
+                        'atividade_dia_semana'  => $aluno->atividade_dia_semana,
+                        'atividade_turno'       => $aluno->atividade_turno,
+                        'atividade_horario'     => $aluno->atividade_horario,
                         'data_nascimento'       => $dataNascimento,
-                        'telefone'              => $aluno->pessoa->contato->telefone,
-                        'email'                 => $aluno->pessoa->contato->email,
+                        'idade'                 => Carbon::parse($dataNascimento)->age,
+                        'estado_civil'          => $aluno->pessoa->estado_civil,
+                        'sexo'                  => $aluno->pessoa->sexo,
+                        'cor'                   => $aluno->pessoa->cor,
                         'endereco'              => $aluno->pessoa->contato->endereco,
+                        'comunidade'            => $aluno->comunidade,
+                        'telefone'              => $aluno->pessoa->contato->telefone,
+                        'email'                 => $aluno->pessoa->contato->email,             
+                        'instituicao'           => $aluno->instituicao,
                         'nome_mae'              => $aluno->pessoa->nome_mae,
                         'nome_pai'              => $aluno->pessoa->nome_pai,
                         'nome_responsavel'      => $aluno->pessoa->nome_responsavel,
                         'parentesco_responsavel' => $aluno->pessoa->parentesco_responsavel,
                         'telefone_responsavel'  => $aluno->pessoa->telefone_responsavel,
-                        'estado_civil'          => $aluno->pessoa->estado_civil,
-                        'sexo'                  => $aluno->pessoa->sexo,
-                        'cor'                   => $aluno->pessoa->cor,
-                        'profissao'             => $aluno->profissao,
                         'escolaridade'          => $aluno->escolaridade,
-                        'ano_escolar'           => $aluno->ano_escolar,
+                        'ano_escolar'           => $aluno->ano_escolar,          
                         'turno'                 => $aluno->turno,
                         'clinica'               => $aluno->clinica,
                         'beneficio'             => $aluno->beneficio,
-                        'comunidade'             => $aluno->comunidade,
-                        'necessidade'           => $aluno->necessidade,
+                        'necessidade'            => $aluno->necessidade,
                         'uniformes'             => $aluno->uniformes
                     ];
     
-            $pdf = PDF::loadView('alunos/pdf', $data);
+            $pdf = PDF::loadView('alunos/ficha', $data);
     
             return $pdf->download('meu_arquivo.pdf');
 

@@ -66,13 +66,14 @@ Route::delete('/voluntarios/{id}', [ VoluntarioController::class , 'destroy' ])-
 Route::get('/voluntarios/imprimir/{id}', [VoluntarioController::class, 'gerarPDF']);
 
 
- 
-
 // ********************************** ALUNOS ********************************
-Route::get('/alunos/choose', [ AlunoController::class , 'choose' ])->middleware('auth');
+//Route::get('/alunos/choose', [ AlunoController::class , 'choose' ])->middleware('auth');
 
 //exibir varios 
 Route::get('/alunos/dashboard', [ AlunoController::class , 'dashboard' ])->middleware('auth');
+//teste PDF
+Route::get('/alunos/ficha', [ AlunoController::class , 'ficha' ])->middleware('auth');
+
 
 //incluir
 Route::get('/alunos/create', [ AlunoController::class , 'create' ])->middleware('auth');
