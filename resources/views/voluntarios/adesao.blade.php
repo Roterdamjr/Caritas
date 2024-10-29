@@ -55,7 +55,6 @@
     td:nth-child(2), td:nth-child(4) { 
         width: 35%; /* Largura das 2ª e 4ª colunas */
     }
-    
     ul {
         list-style-type: disc; /* Tipo de marcador como bolinha */
         margin: 10px 0; /* Margem em cima e embaixo da lista */
@@ -63,8 +62,8 @@
     }
     .rodape {
     margin-top: 10px; /* Ajuste o valor conforme necessário */
-    text-align: center;}
-
+    text-align: center;
+    }
     .rodape-com-margem {
     margin-top: 40px; /* Ajuste o valor conforme necessário */
     text-align: center;
@@ -72,6 +71,10 @@
 
 
 </style>
+
+<div style="text-align: center;">
+    <img src="{{ asset('/image/icone_caritas.jpg') }}" alt="Descrição da imagem" width="300" height="200">
+</div>
 
 <div class="container">
     <div class="titulo">TERMO DE ADESÃO AO TRABALHO VOLUNTÁRIO CASA DE CÁRITAS</div>
@@ -127,7 +130,12 @@
         Atividade a ser desenvolvida: Sem prejuízo de outras atividades porventura necessárias 
         ao bom andamento do trabalho da entidade, concordando ambas as partes, previamente, 
         as atividades principais desenvolvidas pelo voluntário(a) são: 
+        <ul>
+            <li>{{$atividade}}</li>
+        </ul>
+        
     </div>
+
     <p>Data do início: {{$data_inicio}}</p>
     <div class="conteudo"> 
         Disponibilidade do voluntário: à combinar,  conforme (i) a necessidade do trabalho voluntariado
@@ -202,6 +210,6 @@
     <p class="rodape">CNPJ n.º _______________</p>
     <p class="rodape-com-margem">_____________________________________</p>
     <p class="rodape">Assinatura do Voluntário</p>
-    <p class="rodape">CPF n.º </p>
+    <p class="rodape">CPF n.º {{$cpf}}</p>
 
 </div>

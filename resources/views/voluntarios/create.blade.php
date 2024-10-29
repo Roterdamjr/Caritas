@@ -18,6 +18,19 @@
                     </div>
                 </div>
 
+                <div class="form-group row"> 
+                    <label for="atividade" class="col-sm-2 col-form-label ">Atividade</label>
+                    <div class="col-sm-2">
+                        <select id="atividade" name="atividade" class="form-control">
+                            @foreach (['Arte que Ajuda', 'Ação de Caritas', 'Ballet', 'Biblioteca Com.', 'Canto Coral', 
+                                'Flauta Doce', 'Gestação Acolhida', 'Reforço Escolar', 'Sapateado', 'Teatro', 'Violino', 'Violão'] 
+                                as $atividade)
+                                <option value="{{ $atividade }}">{{ $atividade }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-group row "> 
                     <label for="rg" class="col-sm-2 col-form-label">RG</label>
                     <div class="col-sm-2">

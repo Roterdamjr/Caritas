@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('profissao')->nullable();;
             $table->date('data_inicio')->nullable();;
-            $table->string('carga_horaria')->nullable();;
+            $table->string('carga_horaria')->nullable();
+            $table->string('atividade')->nullable();
             $table->timestamps();
         });
     }

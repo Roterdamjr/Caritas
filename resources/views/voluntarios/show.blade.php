@@ -10,8 +10,13 @@
     <div class="container ml-1"> 
 
         <div class="form-group row ">
-            <label for="nome" class="col-sm-2 col-form-label">Nome</label>
+            <label for="nome" class="col-sm-1 col-form-label">Nome</label>
             <label for="nome" class="col-sm-6 col-form-label">{{$voluntario->pessoa->nome}}</label>
+        </div>
+        
+        <div class="form-group row ">
+            <label for="atividade" class="col-sm-1 col-form-label ">Atividade</label>
+            <label class="col-sm-4 col-form-label">{{$voluntario->atividade}}</label>
         </div>
 
         <div class="form-group row "> 

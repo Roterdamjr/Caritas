@@ -18,8 +18,9 @@ class VoluntarioController extends Controller
     }
 
     public function adesao()
+    //para testar o PDF
     {                
-        $Voluntario =Voluntario::findOrFail(1);
+        $Voluntario =Voluntario::findOrFail(2);
 
         $dataNascimento = $Voluntario->pessoa->data_nascimento  ? 
         \Carbon\Carbon::parse($Voluntario->pessoa->data_nascimento)->format('d/m/Y')
@@ -29,6 +30,7 @@ class VoluntarioController extends Controller
         : null;  
         
         $data = [   'nome' =>           $Voluntario->pessoa->nome,
+                    'atividade' =>      $Voluntario->atividade,
                     'rg' =>             $Voluntario->pessoa->rg,
                     'cpf' =>            $Voluntario->pessoa->cpf,
                     'data_nascimento' =>$dataNascimento,
@@ -38,7 +40,7 @@ class VoluntarioController extends Controller
                     'endereco' =>       $Voluntario->pessoa->contato->endereco,
                     'telefone' =>       $Voluntario->pessoa->contato->telefone,
                     'email' =>          $Voluntario->pessoa->contato->email,
-                'data_inicio' =>    $dataInicio];
+                    'data_inicio' =>    $dataInicio];
 
         return view('voluntarios.adesao',$data);
     }
@@ -87,6 +89,7 @@ class VoluntarioController extends Controller
         }     
         $Voluntario->data_inicio = $data_inicio;
         $Voluntario->carga_horaria = $request->carga_horaria;
+        $Voluntario->atividade  = $request->atividade;
         $Voluntario->save();
 
         return redirect('/voluntarios/dashboard')->with("msg","Voluntario criado com sucesso");
@@ -172,7 +175,8 @@ class VoluntarioController extends Controller
         $Voluntario->update([
             'data_inicio' => $data_inicio,
             'profissao' => $request->profissao,
-            'carga_horaria' => $request->carga_horaria
+            'carga_horaria' => $request->carga_horaria,
+            'atividade' => $request->atividade
         ]);
 
         return redirect('/voluntarios/dashboard')->with("msg","Voluntario alterado com sucesso");
@@ -204,6 +208,7 @@ class VoluntarioController extends Controller
         : null;  
         
         $data = [   'nome' =>           $Voluntario->pessoa->nome,
+                    'atividade' =>      $Voluntario->atividade,
                     'rg' =>             $Voluntario->pessoa->rg,
                     'cpf' =>            $Voluntario->pessoa->cpf,
                     'data_nascimento' =>$dataNascimento,
@@ -221,9 +226,5 @@ class VoluntarioController extends Controller
         return $pdf->download('meu_arquivo.pdf');
        
     }
-
-    
-
-
 
 }
