@@ -72,9 +72,6 @@
 
 </style>
 
-<div style="text-align: center;">
-    <img src="{{ asset('/image/icone_caritas.jpg') }}" alt="Descrição da imagem" width="300" height="200">
-</div>
 
 <div class="container">
     <div class="titulo">TERMO DE ADESÃO AO TRABALHO VOLUNTÁRIO CASA DE CÁRITAS</div>

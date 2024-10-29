@@ -39,7 +39,7 @@
             <label for="" class="col-sm-1 col-form-label "></label>
             
             <label for="nacionalidade" class="col-sm-2 col-form-label">Nacionalidade</label>
-            <label for="nacionalidade" class="col-sm-2 col-form-label">{{$data_nascimento}}</label>
+            <label for="nacionalidade" class="col-sm-2 col-form-label">{{$voluntario->pessoa->nacionalidade}}</label>
         </div>
 
         <div class="form-group row "> 

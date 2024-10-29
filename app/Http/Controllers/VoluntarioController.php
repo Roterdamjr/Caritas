@@ -20,7 +20,7 @@ class VoluntarioController extends Controller
     public function adesao()
     //para testar o PDF
     {                
-        $Voluntario =Voluntario::findOrFail(2);
+        $Voluntario =Voluntario::findOrFail(1);
 
         $dataNascimento = $Voluntario->pessoa->data_nascimento  ? 
         \Carbon\Carbon::parse($Voluntario->pessoa->data_nascimento)->format('d/m/Y')
